@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/icon-dev',
+	db: 'mongodb://mongo/icon-dev',
 	app: {
 		title: 'Icon - Development Environment'
 	},
