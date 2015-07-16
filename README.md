@@ -1,2 +1,1 @@
-# Icon
-A application to create and host meta data about networks
+Simple application for viewing a collection of networks
