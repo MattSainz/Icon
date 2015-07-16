@@ -1,4 +1,4 @@
-FROM library/nodejs
+FROM library/node
 
 MAINTAINER Matthias Sainz
 
