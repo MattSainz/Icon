@@ -1,0 +1,25 @@
+web:
+    build: ./app
+    volumes:
+        - ".:/src/app"
+    ports:
+        - "3000"
+    links:
+        - mongo 
+    command: nodemon
+
+nginx:
+
+    restart: always
+    build: ../nginx
+    ports:
+        - 80:80
+    volumes_from:
+        - web
+    links:
+        - web:web
+        
+mongo:
+    image: mongo:latest
+    ports:
+        - "27017:27017"
