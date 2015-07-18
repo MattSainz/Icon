@@ -1,18 +1,19 @@
 'use strict';
 
 module.exports = {
-  db:'mongodb://admin:' +
-      process.env.MONGO_1__ENV_MONGODB_PASS   +
-      '@'                                     +
-      process.env.MONGO_1_PORT_28017_TCP_ADDR +
-      ':27071'                                +
-      '/icon',
-  //TODO make admin an env var
+    db:'mongodb://'                            +
+       process.env.MONGO_1_PORT_28017_TCP_ADDR +
+       ':27017'                                +
+       '/icon',
+    db_auth:{
+	   	user:'web-app',
+        pass: process.env.MONGO_1_ENV_MONGODB_PASS
+	},
 	assets: {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.min.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+				'public/lib/bootstrap/dist/css/bootstrap-theme.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.min.js',
