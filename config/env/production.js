@@ -7,7 +7,7 @@ module.exports = {
        '/icon',
     db_auth:{
 	   	user:'web-app',
-        pass: process.env.MONGO_1_ENV_MONGODB_PASS
+        pass: process.env.MONGO_1_ENV_APP_PASS
 	},
 	assets: {
 		lib: {
