@@ -5,7 +5,7 @@ module.exports = {
       process.env.MONGO_1__ENV_MONGODB_PASS   +
       '@'                                     +
       process.env.MONGO_1_PORT_28017_TCP_ADDR +
-      '27071'                                 +
+      ':27071'                                +
       '/icon',
   //TODO make admin an env var
 	assets: {
