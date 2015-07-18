@@ -1,7 +1,13 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/icon',
+  db:'mongodb://admin:' +
+      process.env.MONGO_1__ENV_MONGODB_PASS   +
+      '@'                                     +
+      process.env.MONGO_1_PORT_28017_TCP_ADDR +
+      '27071'                                 +
+      '/icon',
+  //TODO make admin an env var
 	assets: {
 		lib: {
 			css: [

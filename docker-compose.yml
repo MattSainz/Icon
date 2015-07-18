@@ -1,25 +1,27 @@
-web:
-    build: ./app
-    volumes:
-        - ".:/src/app"
+mongo:
+    image: mongo:latest
     ports:
-        - "3000"
-    links:
-        - mongo 
-    command: nodemon
+        - "27017:27017"
 
 nginx:
 
     restart: always
     build: ../nginx
     ports:
-        - 80:80
+        - "80:80"
     volumes_from:
         - web
     links:
-        - web:web
-        
-mongo:
-    image: mongo:latest
+        - web
+
+web:
+    build: ./
+    restart: always
+    volumes:
+        - "./public/modules:/home/mean/public/modules"
     ports:
-        - "27017:27017"
+        - "3000:3000"
+        - "35729:35729"
+    links:
+        - mongo 
+        
