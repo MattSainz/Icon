@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://'+ process.env.MONGO_PORT_27017_TCP_ADDR +'/icon-dev',
+  db: 'mongodb://'+ (process.env.MONGO_PORT_27017_TCP_ADDR || "localhost:27017")  +'/icon-dev',
 	app: {
 		title: 'Icon - Development Environment'
 	},

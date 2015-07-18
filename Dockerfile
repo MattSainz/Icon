@@ -20,7 +20,7 @@ RUN bower install --config.interactive=false --allow-root
 # Make everything available for start
 ADD . /home/mean
 
-ENV NODE_ENV production 
+ENV NODE_ENV development 
 
 # Port 3000 for server
 # Port 35729 for livereload
