@@ -21,6 +21,7 @@ RUN bower install --config.interactive=false --allow-root
 ADD . /home/mean
 
 ENV NODE_ENV production 
+RUN grunt build
 
 # Port 3000 for server
 # Port 35729 for livereload
