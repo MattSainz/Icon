@@ -1,5 +1,5 @@
 'use strict';
-
+var _ = require('lodash');
 module.exports = function(grunt) {
 	// Unified Watch Object
 	var watchFiles = {
@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 		clientCSS: ['public/modules/**/*.css'],
 		mochaTests: ['app/tests/**/*.js']
 	};
+
 
 	// Project Configuration
 	grunt.initConfig({
@@ -31,7 +32,7 @@ module.exports = function(grunt) {
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
-					livereload: true,
+					livereload: true
 				}
 			},
 			clientJS: {
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
 		},
 		csslint: {
 			options: {
-				csslintrc: '.csslintrc',
+				csslintrc: '.csslintrc'
 			},
 			all: {
 				src: watchFiles.clientCSS
@@ -108,8 +109,8 @@ module.exports = function(grunt) {
 		ngAnnotate: {
 			production: {
 				files: {
-					'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
-				}
+                    'public/dist/application.js': '<%= applicationJavaScriptFiles %>'
+                }
 			}
 		},
 		concurrent: {
@@ -153,8 +154,9 @@ module.exports = function(grunt) {
 		var init = require('./config/init')();
 		var config = require('./config/config');
 
-		grunt.config.set('applicationJavaScriptFiles', config.assets.js);
-		grunt.config.set('applicationCSSFiles', config.assets.css);
+		grunt.config.set('applicationJavaScriptFiles', _.map(config.getJavaScriptAssets(), function(e){ return 'public/' + e; }));
+		grunt.config.set('applicationCSSFiles', _.map(config.getCSSAssets(), function(e){return 'public/' + e;}));
+        
 	});
 
 	// Default task(s).
@@ -170,7 +172,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify:production', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate:production', 'uglify:production', 'cssmin']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
