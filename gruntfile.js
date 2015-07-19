@@ -156,7 +156,7 @@ module.exports = function(grunt) {
 
 		grunt.config.set('applicationJavaScriptFiles', _.map(config.getJavaScriptAssets(), function(e){ return 'public/' + e; }));
 		grunt.config.set('applicationCSSFiles', _.map(config.getCSSAssets(), function(e){return 'public/' + e;}));
-        
+
 	});
 
 	// Default task(s).
