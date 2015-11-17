@@ -2,6 +2,7 @@
 .nodemonignore
 .sass-cache/
 npm-debug.log
+Dockerfile
 node_modules/
 public/lib
 app/tests/coverage/

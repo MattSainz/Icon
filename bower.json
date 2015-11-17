@@ -1,18 +1,22 @@
 {
-	"name": "icon",
-	"version": "0.0.1",
-	"description": "Collection of networks",
-	"dependencies": {
-		"bootstrap": "~3",
-		"angular": "~1.2",
-		"angular-resource": "~1.2",
-		"angular-mocks": "~1.2",
-		"angular-cookies": "~1.2",
-		"angular-animate": "~1.2",
-		"angular-touch": "~1.2",
-		"angular-sanitize": "~1.2",
-		"angular-bootstrap": "~0.11.2",
-		"angular-ui-utils": "~0.1.1",
-		"angular-ui-router": "~0.2.11"
-	}
+  "name": "icon",
+  "version": "0.0.1",
+  "description": "Collection of networks",
+  "dependencies": {
+    "angular": "1.4.7",
+    "angular-material": "1.0.0-rc3",
+    "angular-resource": "1.4.7",
+    "angular-mocks": "1.4.7",
+    "angular-cookies": "1.4.7",
+    "angular-animate": "1.4.7",
+    "angular-touch": "1.4.7",
+    "angular-sanitize": "1.4.7",
+    "angular-bootstrap": "0.14.3",
+    "angular-ui-utils": "3.0.0",
+    "angular-ui-router": "0.2.15",
+    "angular-chart.js": "0.8.5",
+    "lodash": "3.10.1",
+    "angular-socket-io": "~0.7.0",
+    "socket.io-client": "~1.3.7"
+  }
 }

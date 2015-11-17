@@ -1,14 +1,10 @@
 'use strict';
 
 module.exports = {
-    db:'mongodb://'                            +
-       process.env.MONGO_1_PORT_28017_TCP_ADDR +
-       ':27017'                                +
-       '/icon',
-    db_auth:{
-	   	user:'web-app',
-        pass: process.env.MONGO_1_ENV_APP_PASS
-	},
+ 	db: process.env.MONGO_DB,
+	elastic:{
+        host: process.env.ELASTIC_DB
+    },
 	assets: {
 		lib: {
 			css: [

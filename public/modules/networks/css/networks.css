@@ -1,0 +1,226 @@
+.content {
+    margin-top: 50px;
+}
+.undecorated-link:hover {
+    text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+    border-color: #78FA89;
+}
+
+#browseCard{
+	width: 800px;
+	margin-left: 60px;
+    margin-bottom: 40px;
+	background: #FFFFFF;
+}
+
+body{
+	background: #F6F6F6;
+}
+
+/*
+    Search Options style options
+*/
+.graphProperties{
+    height: 300px;
+}
+
+.attributeButton{
+    float: left;
+    width: 200px;
+}
+
+.attributeContainer{
+    margin: 8px;
+}
+
+#searchBox{
+    margin-left: 14px;
+    margin-right: 14px;
+    margin-bottom: 20px;
+}
+
+#size_tab{
+    margin: 12px;
+}
+
+.graphLabels{
+    color: #808080;
+    font-size: 12px;
+}
+
+/*
+    Network style options
+*/
+.networkTitle{
+   margin: 14px;
+}
+
+.networkTitleCard{
+    margin-left: 14px;
+}
+
+.networkInfo{
+    margin: 0px 14px 14px 14px;
+}
+
+.networkSource{
+    margin: 0 14px 14px 14px;
+}
+
+.individualNetworks{
+    margin: 0px 14px 14px 14px;
+}
+
+.nodeEdgeContent{
+    padding-top: 4px;
+    margin-bottom: 14px;
+}
+
+.networkInfoLeft{
+    margin-right: 14px;
+}
+
+.contentLabel{
+   color: #808080;
+   font-size: 12px;
+}
+
+.networkRow{
+    height: 25px;
+}
+
+.networksContent{
+    padding-top: 4px;
+}
+
+.sourcePropterties{
+    padding-top: 4px;
+}
+
+.graphPropertiesContent{
+    padding-top: 4px;
+}
+
+.descriptionContent{
+    padding-top: 4px;
+}
+
+.networkDomain{
+    margin-right: 4px;
+}
+
+
+
+.contentBox{
+    border-top: solid thin lightgray;
+}
+
+
+.listItem{
+    background: white;
+    width: 800px;
+    height: 40px;
+    margin-left: 14px;
+}
+
+md-list-item.md-1-line{
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
+    background: white;
+}
+
+.dataList{
+    background: #F6F6F6;
+    margin-left: 60px;
+    height: 100%;
+    width: 800px;
+}
+
+
+.networkCard{
+	width: 800px;
+    margin: 8px 0 8px 0;
+	background: #FFFFFF;
+}
+
+.indicator{
+    background: rgba(170, 170, 170, 0.89);
+    float: left;
+    width: 8px;
+    height: 48px;
+}
+
+.md-button.md-fab.removeGraphButton{
+   background-color: rgba(255, 2, 0, 0.6);
+}
+
+
+/* Color options for various domains*/
+
+.Economic{
+    background: #4CAF50;
+}
+
+.Social{
+    background: #03A9F4;
+}
+
+.Biological{
+    background: #795548;
+}
+
+.Communication{
+    background: #607D8B;
+}
+
+.Infrastructure{
+    background: #FFEB3B;
+}
+
+.Informational{
+    background: #FF5722;
+}
+
+.Transportation{
+    background: #673AB7;
+}
+
+.contentBox-Economic{
+    border-top: solid thin #4CAF50;
+}
+
+.contentBox-Social{
+    border-top: solid thin #03A9F4;
+}
+
+.contentBox-Biological{
+    border-top: solid thin #795548;
+}
+
+.contentBox-Communication{
+    border-top: solid thin #607D8B;
+}
+
+.contentBox-Infrastructure{
+    border-top: solid thin #FFEB3B;
+}
+
+.contentBox-Informational{
+    border-top: solid thin #FF5722;
+}
+
+.contentBox-Transportation{
+    border-top: solid thin #673AB7;
+}
+
+#addNetwork{
+    float: right;
+    margin: 45px;
+}

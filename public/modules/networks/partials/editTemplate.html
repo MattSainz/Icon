@@ -1,0 +1,217 @@
+<md-card class="networkCard">
+    <div class="networkTitle" layout="row" layout-align="space-between center">
+        <div flex="auto">
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input required ng-model="network._source.title">
+                <div ng-messages="network._source.title.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <div layout="row" flex="auto" layout-align="end center" >
+            <div class="domain">
+                <md-input-container class="md-block">
+                    <label>Domain</label>
+                    <input required ng-model="network._source.networkDomain">
+                    <div ng-messages="network._source.networkDomain.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+
+            <div class="subDomain">
+                <md-input-container class="md-block">
+                    <label>Sub-domain</label>
+                    <input required ng-model="network._source.subDomain">
+                    <div ng-messages="network._source.subDomain.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="networkInfo" layout="row" flex="grow">
+
+        <div class="networkInfoLeft" flex="60">
+            <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea required ng-model="network._source.description" rows="12" style="height:auto;"></textarea>
+                <div ng-messages="network._source.description.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <div class="networkInfoRight" layout="column" flex="auto">
+            <div>
+                <!-- <div class="nodeEdgeContent contentBox contentBox-{{network._source.networkDomain}}"> -->
+                    <div layout="row" layout-align="space-between center">
+                        <div>
+                            <md-input-container class="md-block" style="width:auto;" >
+                                 <label>Edge Type</label>
+                                <input required ng-model="network._source.edgeType">
+                                <div ng-messages="network._source.edgeType.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-align="space-between center">
+                        <div>
+                            <md-input-container class="md-block" grow>
+                                 <label>Node Type</label>
+                                 <input required ng-model="network._source.nodeType">
+                                 <div ng-messages="network._source.nodeType.$error">
+                                     <div ng-message="required">This is required.</div>
+                                 </div>
+                            </md-input-container>
+                        </div>
+
+                    </div>
+
+                    <div layout="row" layout-align="space-between center">
+
+                        <div>
+                            <md-input-container class="md-block" grow>
+                                 <label>Calculated</label>
+                                 <input disabled>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div layout="row" style="margin-bottom:26px;" layout-align="space-between center">
+                        <div>
+                             <md-input-container class="md-block" grow>
+                                 <label>Calculated</label>
+                                 <input disabled>
+                             </md-input-container>
+                        </div>
+                    </div>
+                <!-- </div> -->
+
+                <div>
+                   <!-- <div class="graphPropertiesContent contentBox contentBox-{{network._source.domain}}"> -->
+                        <md-input-container class="md-block">
+                             <label>Graph Properties</label>
+                             <input required ng-model="network._source.graphProperties">
+                             <div ng-messages="network._source.graphProperteis.$error">
+                                 <div ng-message="required">This is required.</div>
+                             </div>
+                        </md-input-container>
+                   <!-- </div> -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="networkSource" layout="column" flex="grow">
+        <div>
+            <md-input-container class="md-block">
+                 <label>Source Url</label>
+                 <input required ng-model="network._source.sourceUrl">
+                 <div ng-messages="network._source.graphProperteis.$error">
+                      <div ng-message="required">This is required.</div>
+                 </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                 <label>Citation</label>
+                 <input required ng-model="network._source.citation">
+                 <div ng-messages="network._source.citation.$error">
+                      <div ng-message="required">This is required.</div>
+                 </div>
+            </md-input-container>
+        </div>
+    </div>
+
+    <div class="individualNetworks" layout="column">
+         <label class="contentLabel">Individual Graphs and Info</label>
+         <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}" >
+             <table width="100%" layout="row" layout-align="center">
+                <tr  class="networkRow">
+                    <td width="10%"> Remove</td>
+                    <td width="45%"> Name </td>
+                    <td width="10%"> Edges </td>
+                    <td width="10%"> Nodes </td>
+                    <td width="10%"> File Size</td>
+                    <td width="10%"> File Type </td>
+                    <td width="25">  Download </td>
+                    </tr>
+                <tr class="networkRow" ng-repeat="graph in network._source.graphs">
+                    <td width="10%">
+                       <md-button class="md-fab md-mini removeGraphButton" aria-label="Add Graph" ng-click="remove($index, network._source.graphs)">
+                          <md-icon md-svg-src="modules/core/img/icons/minus.svg"></md-icon>
+                       </md-button>
+                    </td>
+                    <td width="45%">
+                        <md-input-container class="md-block">
+                            <input required ng-model="graph.name">
+                            <div ng-messages="graph.name.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td width="10%">
+                        <md-input-container class="md-block">
+                            <input required ng-model="graph.edges">
+                            <div ng-messages="graph.edges.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td width="10%">
+                        <md-input-container class="md-block">
+                            <input required ng-model="graph.nodes">
+                            <div ng-messages="graph.nodes.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td width="10%">
+                        <md-input-container class="md-block">
+                            <input required ng-model="graph.fileSize">
+                            <div ng-messages="graph.fileSize.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td width="10%">
+                        <md-input-container class="md-block">
+                            <input required ng-model="graph.fileType">
+                            <div ng-messages="graph.fileType.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                    <td width="25">
+                        <md-input-container class="md-block">
+                            <input required ng-model="graph.downloadLink">
+                            <div ng-messages="graph.downloadLink.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    </td>
+                </tr>
+             </table>
+             <div style="position:relative;left:50%;">
+                 <md-button class="md-fab md-mini md-warn" aria-label="Add Graph" ng-click="add(network._source.graphs)">
+                     <md-icon md-svg-src="modules/core/img/icons/ic_add_48px.svg"></md-icon>
+                 </md-button>
+             </div>
+             <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
+                 <md-button ng-click="network._id == 'new' ? saveNew(network, $event) : save(network, $event)" class="md-raised">Save</md-button>
+                 <md-button ng-click="cancel(network, networks)" class="md-raised">Cancel</md-button>
+                 <md-button ng-click="delete(network, networks, $event)" ng-hide="network._id == 'new'" class="md-raised md-accent">Delete</md-button>
+             </section>
+
+        </div>
+    </div>
+</md-card>

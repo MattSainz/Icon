@@ -1,15 +1,59 @@
+
 .content {
 	margin-top: 50px;
+	margin-bottom:24px;
 }
+
 .undecorated-link:hover {
 	text-decoration: none;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 	display: none !important;
 }
+
 .ng-invalid.ng-dirty {
 	border-color: #FA787E;
 }
+
 .ng-valid.ng-dirty {
 	border-color: #78FA89;
+}
+
+html, body{
+	background: #F6F6F6;
+	height: 100%;
+}
+
+
+
+#myToolbar > * {
+	background: #2B2B2B;
+	color: #F6F6F6;
+}
+
+md-content{
+	background:  #F6F6F6;
+}
+
+#addContent{
+	background:  #f9bc00;
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+}
+
+#editContent{
+    float:right;
+}
+
+.contentText{
+    float:left;
+}
+
+md-card.homeCard{
+	width: 800px;
+	margin-left: 60px;
+    margin-bottom: 40px;
+	background: #FFFFFF;
 }

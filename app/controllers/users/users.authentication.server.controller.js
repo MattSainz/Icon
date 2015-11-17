@@ -31,7 +31,7 @@ exports.signup = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			// Remove sensitive data before login
+			// Remove sensitive networks before login
 			user.password = undefined;
 			user.salt = undefined;
 
@@ -54,7 +54,7 @@ exports.signin = function(req, res, next) {
 		if (err || !user) {
 			res.status(400).send(info);
 		} else {
-			// Remove sensitive data before login
+			// Remove sensitive networks before login
 			user.password = undefined;
 			user.salt = undefined;
 
@@ -149,12 +149,12 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 			}
 		});
 	} else {
-		// User is already logged in, join the provider data to the existing user
+		// User is already logged in, join the provider networks to the existing user
 		var user = req.user;
 
-		// Check if user exists, is not signed in using this provider, and doesn't have that provider data already configured
+		// Check if user exists, is not signed in using this provider, and doesn't have that provider networks already configured
 		if (user.provider !== providerUserProfile.provider && (!user.additionalProvidersData || !user.additionalProvidersData[providerUserProfile.provider])) {
-			// Add the provider data to the additional provider data field
+			// Add the provider networks to the additional provider networks field
 			if (!user.additionalProvidersData) user.additionalProvidersData = {};
 			user.additionalProvidersData[providerUserProfile.provider] = providerUserProfile.providerData;
 

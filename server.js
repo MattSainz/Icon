@@ -12,6 +12,7 @@ var init = require('./config/init')(),
  * Please note that the order of loading is important.
  */
 
+
 // Bootstrap db connection
 var db = mongoose.connect(config.db, config.db_auth || {}, function(err) {
 	if (err) {
@@ -27,10 +28,12 @@ var app = require('./config/express')(db);
 require('./config/passport')();
 
 // Start the app by listening on <port>
-app.listen(config.port);
+//app.listen(config.port);
+app.get('server').listen(config.port);
 
 // Expose app
 exports = module.exports = app;
 
 // Logging initialization
-console.log('MEAN.JS application started on port ' + config.port);
+
+console.log('MEAN.JS application started on port:  ' + config.port);

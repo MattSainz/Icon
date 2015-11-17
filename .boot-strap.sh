@@ -18,5 +18,3 @@ echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | 
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-#MEAN
-sudo npm install -g bower grunt-cli yo generator-meanjs
