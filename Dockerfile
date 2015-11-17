@@ -22,9 +22,7 @@ ADD .bowerrc /home/mean/.bowerrc
 ADD bower.json /home/mean/bower.json
 RUN bower install --config.interactive=false --allow-root
 
-ADD . /home/mean
-
-ENV NODE_ENV production 
+ENV NODE_ENV production
 RUN grunt build
 
 # Port 3000 for server

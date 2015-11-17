@@ -185,7 +185,7 @@ md-list-item.md-1-line{
 }
 
 .Informational{
-    background: #FF5722;
+    background: rgba(255, 87, 34, 0.71);
 }
 
 .Transportation{
@@ -213,7 +213,7 @@ md-list-item.md-1-line{
 }
 
 .contentBox-Informational{
-    border-top: solid thin #FF5722;
+    border-top: solid thin rgba(255, 87, 34, 0.72);
 }
 
 .contentBox-Transportation{
