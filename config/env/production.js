@@ -1,13 +1,10 @@
 'use strict';
 
 module.exports = {
-  db:'mongodb://admin:' +
-      process.env.MONGO_1__ENV_MONGODB_PASS   +
-      '@'                                     +
-      process.env.MONGO_1_PORT_28017_TCP_ADDR +
-      '27071'                                 +
-      '/icon',
-  //TODO make admin an env var
+ 	db: process.env.MONGO_DB,
+	elastic:{
+        host: process.env.ELASTIC_DB
+    },
 	assets: {
 		lib: {
 			css: [

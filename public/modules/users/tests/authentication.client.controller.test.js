@@ -88,7 +88,7 @@
 			expect(scope.error).toEqual('Unknown user');
 		});
 
-		it('$scope.signup() should register with correct data', function() {
+		it('$scope.signup() should register with correct networks', function() {
 			// Test expected GET request
 			scope.authentication.user = 'Fred';
 			$httpBackend.when('POST', '/auth/signup').respond(200, 'Fred');

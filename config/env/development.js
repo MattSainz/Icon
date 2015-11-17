@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = {
-  db: 'mongodb://'+ (process.env.MONGO_PORT_27017_TCP_ADDR || "localhost:27017")  +'/icon-dev',
+  	db: 'mongodb://icon_app:foo@localhost:53194/icondb',
+	elastic:{
+        host: 'localhost:9200'
+    },
 	app: {
 		title: 'Icon - Development Environment'
 	},

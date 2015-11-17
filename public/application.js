@@ -1,14 +1,25 @@
 'use strict';
-
+var app = angular.module(
+	ApplicationConfiguration.applicationModuleName,
+	ApplicationConfiguration.applicationModuleVendorDependencies
+);
 //Start by defining the main module and adding the module dependencies
-angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
+
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
+app.config(['$locationProvider',
 	function($locationProvider) {
 		$locationProvider.hashPrefix('!');
 	}
 ]);
+
+//Load Colors
+app.config(ApplicationConfiguration.angularMaterialColor);
+
+//Allow the use of lodash in angular
+app.factory('_', function($window){
+	return( $window._ );
+});
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {

@@ -19,7 +19,7 @@ module.exports = function() {
 			profileFields: ['id', 'first-name', 'last-name', 'email-address']
 		},
 		function(req, accessToken, refreshToken, profile, done) {
-			// Set the provider data and include tokens
+			// Set the provider networks and include tokens
 			var providerData = profile._json;
 			providerData.accessToken = accessToken;
 			providerData.refreshToken = refreshToken;

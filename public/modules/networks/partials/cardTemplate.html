@@ -1,0 +1,126 @@
+<md-card class="networkCard">
+    <div class="networkTitleCard" layout="row" layout-align="space-between center">
+        <div flex="auto">
+           {{network._source.title}}
+        </div>
+
+        <div layout="row" flex="auto" layout-align="end center" >
+            <div class="domain">
+                {{network._source.networkDomain}}
+            </div>
+
+            <div class="subDomain">
+                {{network._source.subDomain}}
+            </div>
+
+        </div>
+
+        <md-button class="md-icon-button" ng-click="network.state = 'list'" aria-label="More">
+            <md-icon ng-style="{'height':'18px'}" md-svg-icon="modules/core/img/icons/chevron-up.svg"></md-icon>
+        </md-button>
+
+    </div>
+    <div class="networkInfo" layout="row" flex="grow">
+
+        <div class="networkInfoLeft" flex="60">
+            <label class="contentLabel">Description</label>
+            <div class="descriptionContent contentBox contentBox-{{network._source.networkDomain}}" >
+                {{network._source.description}}
+            </div>
+        </div>
+
+        <div class="networkInfoRight" layout="column" flex="40">
+            <div>
+                <label class="contentLabel">Node and Edge Info</label>
+                <div class="nodeEdgeContent contentBox contentBox-{{network._source.networkDomain}}">
+                    <div layout="row" layout-align="space-between center">
+                        <div>
+                            Edge Type
+                        </div>
+
+                        <div>
+                            {{network._source.edgeType}}
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-align="space-between center">
+                        <div>
+                            Node Type
+                        </div>
+
+                        <div>
+                            {{network._source.nodeType}}
+                        </div>
+
+                    </div>
+
+                    <div layout="row" layout-align="space-between center">
+                        <div>
+                            Max Edges
+                        </div>
+                        <div>
+                            {{network._source.maxEdges}}
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-align="space-between center">
+                        <div>
+                           Max Nodes
+                        </div>
+                        <div>
+                            {{network._source.maxNodes}}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="contentLabel">Graph Properties</label>
+                    <div class="graphPropertiesContent contentBox contentBox-{{network._source.networkDomain}}">
+                        {{network._source.graphProperties}}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="networkSource" layout="row" flex="grow">
+        <div>
+            <label class="contentLabel">Source and Citation</label>
+            <div layout="row" layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
+                <div flex="10">
+                    <a href="{{network._source.sourceUrl}}">Source</a>
+                </div>
+                <div flex="grow">
+                    {{network._source.citation}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="individualNetworks" layout="column">
+         <label class="contentLabel">Individual Graphs and Info</label>
+         <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}" >
+             <table width="100%" layout="row" layout-align="space-between center">
+                <tr  class="networkRow">
+                    <td width="55%"> Name </td>
+                    <td width="10%"> Edges </td>
+                    <td width="10%"> Nodes </td>
+                    <td width="10%"> File Size</td>
+                    <td width="10%"> File Type </td>
+                    <td width="25">  Download </td>
+                    </tr>
+                <tr class="networkRow" ng-repeat="graph in network._source.graphs">
+                    <td width="55%"> {{graph.name}} </td>
+                    <td width="10%">{{graph.edges}} </td>
+                    <td width="10%">{{graph.nodes}} </td>
+                    <td width="10%">{{graph.fileSize}} </td>
+                    <td width="10%">{{graph.fileType}} </td>
+                    <td width="25"> <a href="{{graph.downloadLink}}">Download</a> </td>
+                </tr>
+             </table>
+        </div>
+    </div>
+</md-card>

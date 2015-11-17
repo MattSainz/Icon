@@ -1,0 +1,27 @@
+<div>
+    <div class="indicator {{network._source.networkDomain}}" ></div>
+    <md-list-item class="md-1-line" >
+        <div class="listItem" layout="row" layout-align="space-around center">
+            <div flex="60">
+               {{network._source.title}}
+            </div>
+
+            <div flex="grow" layout="row" flex="auto" layout-align="end center" >
+                <div  class="domain" style="margin-right: 8px">
+                    {{network._source.networkDomain}}
+                </div>
+
+                <div  class="subDomain">
+                    {{network._source.subDomain}}
+                </div>
+
+                <md-button class="md-icon-button" style="width: 24px;" ng-click="network.state = 'open'" aria-label="More">
+                    <md-icon ng-style="{'height':'18px'}" md-svg-icon="modules/core/img/icons/chevron-down.svg"></md-icon>
+                </md-button>
+                <md-button data-ng-hide="!authentication.user" style="width: 24px; margin-right: 8px;" ng-click="network.state = 'edit'" class="md-icon-button" aria-label="More">
+                    <md-icon ng-style="{'height':'18px'}" md-svg-icon="modules/core/img/icons/pencil.svg"></md-icon>
+                </md-button>
+            </div>
+        </div>
+    </md-list-item>
+</div>

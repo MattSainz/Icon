@@ -21,16 +21,13 @@ var fs = require('fs'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
-	path = require('path');
+	path = require('path'),
+	elastic = require('elasticsearch'),
+	io = require('socket.io');
 
 module.exports = function(db) {
 	// Initialize express app
 	var app = express();
-
-	// Globbing model files
-	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
-		require(path.resolve(modelPath));
-	});
 
 	// Setting application local variables
 	app.locals.title = config.app.title;
@@ -39,6 +36,17 @@ module.exports = function(db) {
 	app.locals.facebookAppId = config.facebook.clientID;
 	app.locals.jsFiles = config.getJavaScriptAssets();
 	app.locals.cssFiles = config.getCSSAssets();
+
+	//set up elasticsearch client
+	app.set('elastic' ,new elastic.Client({
+        host: config.elastic.host,
+        log: 'trace'
+	}));
+
+	// Globbing model files
+	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
+		require(path.resolve(modelPath))(app);
+	});
 
 	// Passing the request url to environment locals
 	app.use(function(req, res, next) {
@@ -113,6 +121,7 @@ module.exports = function(db) {
 	// Setting the app router and static folder
 	app.use(express.static(path.resolve('./public')));
 
+
 	// Globbing routing files
 	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
 		require(path.resolve(routePath))(app);
@@ -148,6 +157,8 @@ module.exports = function(db) {
 		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
 		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
 
+		//TODO add io support
+
 		// Create HTTPS Server
 		var httpsServer = https.createServer({
 			key: privateKey,
@@ -157,6 +168,17 @@ module.exports = function(db) {
 		// Return HTTPS server instance
 		return httpsServer;
 	}
+
+	var server = http.createServer(app);
+	var myIo = io.listen(server);
+
+	app.set('io', myIo);
+	app.set('server', server);
+
+	// Globbing routing files
+	config.getGlobbedFiles('./app/socketio/**/*.js').forEach(function(socketPath) {
+		require(path.resolve(socketPath))(app);
+	});
 
 	// Return Express server instance
 	return app;

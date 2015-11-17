@@ -1,0 +1,92 @@
+<section class="container" ng-controller="NetworksController">
+
+    <md-card id="browseCard">
+        <div class="browse">
+        <md-tabs class="graphProperties" md-selected="selectedIndex" md-border-bottom md-autoselect>
+            <md-tab ng-repeat="attr in attrArr" label="{{attr.attrCat}}">
+
+            <div ng-show="loading">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+
+
+            <div layout="row" class="attributeContainer" layout-wrap>
+                <div ng-repeat="a in attr.attrs">
+                   <div class="attributeButton" flex="none">
+                       <md-checkbox ng-disabled="loadingNetworks" ng-model="a.state" >{{a.value}}</md-checkbox>
+                   </div>
+                </div>
+
+            </div>
+            </md-tab>
+
+            <!--       Size Tab       -->
+            <md-tab label="Size">
+                <div id="size_tab">
+                    <label class="graphLabels">Node and Edge Count Distribution</label>
+                    <canvas id="line"
+                            class="chart chart-line"
+                            chart-data="data"
+                            chart-labels="labels"
+                            chart-options="options"
+                            width="380px"
+                            height="60px">
+                    </canvas>
+                    <label layout="row" layout-align="center start" class="graphLabels">Nodes in Gray Edges in Blue</label>
+                    <div layout="row" layout-align="space-around start">
+                    <md-input-container ng-repeat="s in sizeInfo">
+                        <label>{{s.attrCat}}</label>
+                        <md-select ng-disabled="loadingNetworks" ng-model="s.attrs.state">
+                            <md-option ng-repeat="label in s.attrs.labels" value="{{label}}">
+                                {{label}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    </div>
+                </div>
+            </md-tab>
+
+        </md-tabs>
+        <md-divider></md-divider>
+        <div id="searchBox" layout="row">
+            <md-input-container flex="grow">
+                <label>Search</label>
+                <input enter-key="searchButton()" ng-disabled="loadingNetworks" ng-model="searchField">
+            </md-input-container>
+
+            <md-button id="searchButton" ng-click="searchButton()" aria-label="Comment" ng-click="">
+                <md-icon md-font-icon="material-icons"> search </md-icon>
+            </md-button>
+        </div>
+        <md-progress-linear class="md-warn" md-mode="determinate" value="{{loadingProgress}}"></md-progress-linear>
+        </div>
+    </md-card>
+
+
+    <div class="dataList">
+    <md-list>
+        <div ng-repeat="network in networks | orderBy: '_score'">
+            <div ng-switch on="network.state">
+                <div ng-switch-when="list">
+                    <network-list-item authentication="authentication" network="network"></network-list-item>
+                </div>
+                <div ng-switch-when="open">
+                    <network-card network="network"></network-card>
+                </div>
+                <div ng-switch-when="edit">
+                    <edit-card  network="network" networks="networks"></edit-card>
+                </div>
+            </div>
+           <!-- <md-divider ></md-divider> -->
+        </div>
+    </md-list>
+    </div>
+
+    <md-button id="addNetwork" data-ng-hide="!authentication.user" class="md-fab md-warn" aria-label="Comment" ng-click="addNewNetworkTemplate()">
+         <md-icon md-font-icon="material-icons"> add </md-icon>
+    </md-button>
+
+</section>
+

@@ -1,0 +1,26 @@
+<md-card class="homeCard">
+    <md-card-content>
+        <h2 class="md-title">{{entry.title}}</h2>
+
+        <form name="newHomeContent" >
+            <div layout="column">
+                <md-input-container flex="100">
+                    <label>Title</label>
+                    <input required name="title" ng-model="entry.title">
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>Content</label>
+                    <textarea required name="content" ng-model="entry.contentBody" columns="1"></textarea>
+                </md-input-container>
+            </div>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <md-button class="md-raised" ng-click="saveFunction(index)">Save</md-button>
+                <md-button class="md-raised" ng-click="cancelFunction(index)">Cancel</md-button>
+                <md-button class="md-raised" ng-click="deleteFunction(index)">Delete</md-button>
+            </section>
+        </form>
+
+    </md-card-content>
+</md-card>
+
