@@ -115,15 +115,20 @@ networkModule.directive('editCard',['networkModel','$mdDialog', function(network
 }]);
 
 networkModule.directive('enterKey', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if(event.which === 13) {
-                scope.$apply(function (){
-                    scope.$eval(attrs.myEnter);
-                });
+    return {
+        link:function (scope, element, attrs)
+        {
+            element.bind("keydown keypress", function (event) {
+                if (event.which === 13) {
+                    scope.$apply(function () {
+                        scope.$eval(attrs.myEnter);
+                    });
 
-                event.preventDefault();
-            }
-        });
+                    event.preventDefault();
+                }
+            });
+        }
     };
+
 });
+

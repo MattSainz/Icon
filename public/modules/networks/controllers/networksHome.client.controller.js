@@ -6,9 +6,9 @@ angular.module('networks').controller('NetworksController', ['$scope', 'Authenti
     '$window', '$timeout', 'socket',
     function($scope, Authentication, Menus, networkModel, $window, $timeout, socket ) {
 
+
         var _ = $window._;
         var initializing = true;
-
 
         $scope.authentication = Authentication;
         $scope.isCollapsed = false;
@@ -16,7 +16,7 @@ angular.module('networks').controller('NetworksController', ['$scope', 'Authenti
         $scope.loading = true;
         $scope.loadingNetworks = true;
         $scope.loadingProgress = 0;
-
+        $scope.showMore = false;
         $scope.attrArr = [{attrCat:'Loading', attrs:[]}];
         $scope.searchField = "";
         $scope.networks = [];
@@ -27,7 +27,8 @@ angular.module('networks').controller('NetworksController', ['$scope', 'Authenti
             pointDot: false,
             responsive: true
         };
-        $scope.type = 'Line';
+
+        $scope.numEntries = 0;
 
         var hits = 0.0;
         socket.on('dataSegment', function(data){
@@ -40,10 +41,36 @@ angular.module('networks').controller('NetworksController', ['$scope', 'Authenti
             }));
             socket.emit('scroll', data._scroll_id);
             if(hits === data.hits.total){
-                console.log($scope.networks);
+                $scope.numEntries = data.hits.total;
+                getStats();
                 $scope.loadingNetworks = false;
             }
         });
+
+        function getStats(){
+            //Domains
+            $scope.domains = _.reduce(_.groupBy($scope.networks, function(n){
+                return n._source.networkDomain;
+            }), function(toRet, val, key){
+                toRet.labels.push(key);
+                toRet.data[0].push(val.length);
+                return toRet;
+            },{data:[[]],labels:[]});
+
+            //Properties
+            $scope.properties = _.reduce(_.groupBy(_.reduce($scope.networks,function(arr, n){
+                return arr.concat(_.map(n._source.graphProperties.split(','), function(nTrim){
+                    return nTrim.trim();
+                }));
+            },[]),function(n){
+                return n;
+            }), function(toRet, val, key){
+                toRet.labels.push(key);
+                toRet.data[0].push(val.length);
+                return toRet;
+            },{data:[[]],labels:[]});
+
+        }
 
         networkModel.getAttrs().then(function(attrs){
             $scope.attrArr = attrs.checkbox;

@@ -44,7 +44,6 @@ body{
 #searchBox{
     margin-left: 14px;
     margin-right: 14px;
-    margin-bottom: 20px;
 }
 
 #size_tab{
@@ -223,4 +222,21 @@ md-list-item.md-1-line{
 #addNetwork{
     float: right;
     margin: 45px;
+}
+
+.networkCount{
+   margin-bottom: 14px;
+   font-size: 24px;
+}
+
+#bar{
+    margin-bottom: 14px;
+}
+
+#lineInfo{
+    margin-bottom: 14px;
+}
+
+#barProps{
+
 }

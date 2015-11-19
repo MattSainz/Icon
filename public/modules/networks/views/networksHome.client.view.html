@@ -2,6 +2,7 @@
 
     <md-card id="browseCard">
         <div class="browse">
+        <md-progress-linear class="md-warn" md-mode="determinate" value="{{loadingProgress}}"></md-progress-linear>
         <md-tabs class="graphProperties" md-selected="selectedIndex" md-border-bottom md-autoselect>
             <md-tab ng-repeat="attr in attrArr" label="{{attr.attrCat}}">
 
@@ -56,18 +57,54 @@
                 <input enter-key="searchButton()" ng-disabled="loadingNetworks" ng-model="searchField">
             </md-input-container>
 
-            <md-button id="searchButton" ng-click="searchButton()" aria-label="Comment" ng-click="">
+            <md-button id="searchButton" ng-click="searchButton()" aria-label="Comment">
                 <md-icon md-font-icon="material-icons"> search </md-icon>
             </md-button>
         </div>
-        <md-progress-linear class="md-warn" md-mode="determinate" value="{{loadingProgress}}"></md-progress-linear>
         </div>
+
+        <md-divider style="margin-top:25px" ng-show="showMore"></md-divider>
+        <div ng-show="showMore" style="margin-right: 14px; margin-left: 14px; margin-top:14px;" layout="column" >
+            <label class="networkCount">Networks {{numEntries}}</label>
+            <label class="graphLabels">Domain Counts</label>
+            <canvas id="bar"
+            class="chart chart-bar"
+            chart-data="domains.data"
+            chart-labels="domains.labels"
+            chart-options="options"
+            width="380px"
+            height="80px">
+            </canvas>
+
+            <label class="graphLabels">Property Counts</label>
+            <canvas id="barProps"
+                class="chart chart-bar"
+                chart-data="properties.data"
+                chart-labels="properties.labels"
+                chart-options="options"
+                width="380px"
+                height="80px">
+            </canvas>
+
+            <label class="graphLabels">Node and Edge Count Distribution</label>
+            <canvas id="lineInfo"
+                    class="chart chart-line"
+                    chart-data="data"
+                    chart-labels="labels"
+                    chart-options="options"
+                    width="380px"
+                    height="60px">
+            </canvas>
+        </div>
+        <md-button ng-click="showMore = !showMore" id="showMore" class="md-fab md-mini md-warn" style="left:45%;bottom: -25px" aria-label="Comment">
+            <md-icon md-font-icon="material-icons">{{ (showMore) ? 'expand_less' : 'expand_more'}}</md-icon>
+        </md-button>
     </md-card>
 
 
     <div class="dataList">
     <md-list>
-        <div ng-repeat="network in networks | orderBy: '_score'">
+        <div ng-repeat="network in networks | orderBy: '_source.networkDomain'">
             <div ng-switch on="network.state">
                 <div ng-switch-when="list">
                     <network-list-item authentication="authentication" network="network"></network-list-item>
