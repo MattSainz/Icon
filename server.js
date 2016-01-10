@@ -14,6 +14,7 @@ var init = require('./config/init')(),
 
 
 // Bootstrap db connection
+	console.log(config.db);
 var db = mongoose.connect(config.db, config.db_auth || {}, function(err) {
 	if (err) {
 		console.error(chalk.red('Could not connect to MongoDB!'));

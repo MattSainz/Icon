@@ -26,7 +26,7 @@ networkModule.directive('networkListItem', function(){
    return{
       scope:{
         network:'=',
-        authentication: '=',
+        authentication: '='
       },
       templateUrl:'modules/networks/partials/listItemTemplate.html'
    };

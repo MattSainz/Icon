@@ -1,4 +1,5 @@
 'use strict';
+
 var app = angular.module(
 	ApplicationConfiguration.applicationModuleName,
 	ApplicationConfiguration.applicationModuleVendorDependencies
