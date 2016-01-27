@@ -144,8 +144,10 @@ exports.getNetworks = function(req, res){
 
 
 //TODO move to model
-exports.loadFromFile = function(req, res, app){
+exports.loadFromFile = function(req, res){
+    console.log("Trying to read from file?");
     fs.readFile('/Users/Matthias/Code/Icon/app/controllers/codebeautify.json','utf8', function(err, data){
+
         if( err ){
             res.status(500).send({
               message: err
@@ -155,16 +157,19 @@ exports.loadFromFile = function(req, res, app){
             var groups = _.groupBy(dataJson, function(o){
                return o['GroupId'].replace('\ \g', '')
             });
-
             var result = [];
-            _.forIn(groups, function(value, key){
+            var hostedBy = '';
+            _.forEach(groups, function(value, key){
+                console.log(value);
+                console.log(key);
 
                 var graphs = [];
                 var maxEdges = 0;
                 var maxNodes = 0;
                 var minEdges = Number.MAX_VALUE;
                 var minNodes = Number.MAX_VALUE;
-                var diffFileTypes = false;
+                var fileFormat = '';
+                var newFileType = '';
 
                 _.forEach(value, function(g){
                     var nodes = Number.parseInt(g['Nodes']['__text']);
@@ -175,32 +180,58 @@ exports.loadFromFile = function(req, res, app){
                     if( minEdges > edges ) minEdges = edges;
                     if( minNodes > nodes) minNodes = nodes;
 
+                    fileFormat = 'unknown';
+                    newFileType = g.FileType;
+                    switch(g.FileType.trim().toLowerCase()){
+                        case 'gml':
+                            fileFormat = 'gml';
+                            newFileType  = 'txt';
+                            break;
+                        case 'graphml':
+                            fileFormat = 'graphML';
+                            newFileType = 'txt';
+                            break;
+                        case 'edgelist':
+                            fileFormat = 'edgelist';
+                            newFileType = 'txt';
+                            break;
+                        case 'xml':
+                            fileFormat = 'edgelist';
+                            newFileType = 'xml';
+                            break;
+                    }
+
                     graphs.push({
                         name: g.Name,
                         nodes: g['Nodes']['__text'],
                         edges: g['Edges']['__text'],
                         fileSize: g.FileSize,
-                        fileType: g.FileType,
+                        fileType: newFileType,
+                        fileFormat: fileFormat,
                         downloadLink: g.DataLink
                     });
                 });
-
                 var groupInfo = value[0];
+
+                hostedBy = groupInfo.GroupDescription.match(/\.\s*(data|hosted|collected)\s.+by.*/gi);
+                if(hostedBy) hostedBy = String(hostedBy).replace(/\./g, '');
+                var newDesc = groupInfo.GroupDescription.replace(/\.\s*(data|hosted|collected)\s.+by.*/gi,'');
+
                 result.push({
                       title:           key,
-                      networkDomain:   groupInfo.Domain,
-                      subDomain:       groupInfo.SubDomain,
-                      description:     groupInfo.GroupDescription,
-                      nodeType:        groupInfo.NodeType,
-                      edgeType:        groupInfo.EdgeType,
-                      graphProperties: groupInfo.GraphProperties,
-                      sourceUrl:       groupInfo.InfoLink,
-                      citation:        groupInfo.Citation,
+                      networkDomain:   groupInfo.Domain.trim(),
+                      subDomain:       groupInfo.SubDomain.trim(),
+                      description:     newDesc,
+                      hostedBy:        hostedBy,
+                      nodeType:        groupInfo.NodeType.trim(),
+                      edgeType:        groupInfo.EdgeType.trim(),
+                      graphProperties: groupInfo.GraphProperties.trim(),
+                      sourceUrl:       groupInfo.InfoLink.trim(),
+                      citation:        groupInfo.Citation.trim(),
                       maxNodes:        maxNodes,
                       maxEdges:        maxEdges,
                       minNodes:        minNodes,
                       minEdges:        minEdges,
-                      fileType:        groupInfo.fileType,
                       graphs: graphs
                 });
             });
@@ -218,8 +249,8 @@ exports.loadFromFile = function(req, res, app){
             });
 
         }
-    });
 
+    });
 };
 
 exports.syncElastic = function(req, res){

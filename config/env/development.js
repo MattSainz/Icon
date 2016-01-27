@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-  	db: 'mongodb://icon_app:foo@localhost:53194/icondb',
+  	db: 'localhost:2700',
 	elastic:{
-        host: 'localhost:9200'
+        host: 'localhost:2900'
     },
 	app: {
 		title: 'Icon - Development Environment'

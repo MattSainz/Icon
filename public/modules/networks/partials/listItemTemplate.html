@@ -1,5 +1,6 @@
 <div>
     <div class="indicator {{network._source.networkDomain}}" ></div>
+    {{network._.source}}
     <md-list-item class="md-1-line" >
         <div class="listItem" layout="row" layout-align="space-around center">
             <div flex="60">
@@ -16,10 +17,10 @@
                 </div>
 
                 <md-button class="md-icon-button" style="width: 24px;" ng-click="network.state = 'open'" aria-label="More">
-                    <md-icon ng-style="{'height':'18px'}" md-svg-icon="modules/core/img/icons/chevron-down.svg"></md-icon>
+                    <md-icon class="md-warn" ng-style="{'height':'22px'}" md-svg-icon="modules/core/img/icons/chevron-down.svg"></md-icon>
                 </md-button>
                 <md-button data-ng-hide="!authentication.user" style="width: 24px; margin-right: 8px;" ng-click="network.state = 'edit'" class="md-icon-button" aria-label="More">
-                    <md-icon ng-style="{'height':'18px'}" md-svg-icon="modules/core/img/icons/pencil.svg"></md-icon>
+                    <md-icon class="md-warn" ng-style="{'height':'22px'}" md-svg-icon="modules/core/img/icons/pencil.svg"></md-icon>
                 </md-button>
             </div>
         </div>

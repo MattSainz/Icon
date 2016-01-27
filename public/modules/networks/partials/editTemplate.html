@@ -3,10 +3,7 @@
         <div flex="auto">
             <md-input-container class="md-block">
                 <label>Title</label>
-                <input required ng-model="network._source.title">
-                <div ng-messages="network._source.title.$error">
-                    <div ng-message="required">This is required.</div>
-                </div>
+                <input ng-model="network._source.title">
             </md-input-container>
         </div>
 
@@ -14,20 +11,14 @@
             <div class="domain">
                 <md-input-container class="md-block">
                     <label>Domain</label>
-                    <input required ng-model="network._source.networkDomain">
-                    <div ng-messages="network._source.networkDomain.$error">
-                        <div ng-message="required">This is required.</div>
-                    </div>
+                    <input ng-model="network._source.networkDomain">
                 </md-input-container>
             </div>
 
             <div class="subDomain">
                 <md-input-container class="md-block">
                     <label>Sub-domain</label>
-                    <input required ng-model="network._source.subDomain">
-                    <div ng-messages="network._source.subDomain.$error">
-                        <div ng-message="required">This is required.</div>
-                    </div>
+                    <input ng-model="network._source.subDomain">
                 </md-input-container>
             </div>
         </div>
@@ -39,10 +30,7 @@
         <div class="networkInfoLeft" flex="60">
             <md-input-container class="md-block">
                 <label>Description</label>
-                <textarea required ng-model="network._source.description" rows="12" style="height:auto;"></textarea>
-                <div ng-messages="network._source.description.$error">
-                    <div ng-message="required">This is required.</div>
-                </div>
+                <textarea ng-model="network._source.description" rows="12" style="height:auto;"></textarea>
             </md-input-container>
         </div>
 
@@ -53,10 +41,7 @@
                         <div>
                             <md-input-container class="md-block" style="width:auto;" >
                                  <label>Edge Type</label>
-                                <input required ng-model="network._source.edgeType">
-                                <div ng-messages="network._source.edgeType.$error">
-                                    <div ng-message="required">This is required.</div>
-                                </div>
+                                <input ng-model="network._source.edgeType">
                             </md-input-container>
                         </div>
                     </div>
@@ -65,10 +50,7 @@
                         <div>
                             <md-input-container class="md-block" grow>
                                  <label>Node Type</label>
-                                 <input required ng-model="network._source.nodeType">
-                                 <div ng-messages="network._source.nodeType.$error">
-                                     <div ng-message="required">This is required.</div>
-                                 </div>
+                                 <input ng-model="network._source.nodeType">
                             </md-input-container>
                         </div>
 
@@ -98,10 +80,7 @@
                    <!-- <div class="graphPropertiesContent contentBox contentBox-{{network._source.domain}}"> -->
                         <md-input-container class="md-block">
                              <label>Graph Properties</label>
-                             <input required ng-model="network._source.graphProperties">
-                             <div ng-messages="network._source.graphProperteis.$error">
-                                 <div ng-message="required">This is required.</div>
-                             </div>
+                             <input ng-model="network._source.graphProperties">
                         </md-input-container>
                    <!-- </div> -->
                 </div>
@@ -116,33 +95,34 @@
         <div>
             <md-input-container class="md-block">
                  <label>Source Url</label>
-                 <input required ng-model="network._source.sourceUrl">
-                 <div ng-messages="network._source.graphProperteis.$error">
-                      <div ng-message="required">This is required.</div>
-                 </div>
+                 <input ng-model="network._source.sourceUrl">
             </md-input-container>
 
             <md-input-container class="md-block">
                  <label>Citation</label>
-                 <input required ng-model="network._source.citation">
-                 <div ng-messages="network._source.citation.$error">
-                      <div ng-message="required">This is required.</div>
-                 </div>
+                 <input ng-model="network._source.citation">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                 <label>Hosted By</label>
+                 <input ng-model="network._source.hostedBy">
             </md-input-container>
         </div>
     </div>
+
 
     <div class="individualNetworks" layout="column">
          <label class="contentLabel">Individual Graphs and Info</label>
          <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}" >
              <table width="100%" layout="row" layout-align="center">
                 <tr  class="networkRow">
-                    <td width="10%"> Remove</td>
-                    <td width="45%"> Name </td>
+                    <td width="10%"> </td>
+                    <td width="35%"> Name </td>
                     <td width="10%"> Edges </td>
                     <td width="10%"> Nodes </td>
                     <td width="10%"> File Size</td>
                     <td width="10%"> File Type </td>
+                    <td width="10%"> File Format</td>
                     <td width="25">  Download </td>
                     </tr>
                 <tr class="networkRow" ng-repeat="graph in network._source.graphs">
@@ -151,52 +131,39 @@
                           <md-icon md-svg-src="modules/core/img/icons/minus.svg"></md-icon>
                        </md-button>
                     </td>
-                    <td width="45%">
+                    <td width="35%">
                         <md-input-container class="md-block">
-                            <input required ng-model="graph.name">
-                            <div ng-messages="graph.name.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
+                            <input ng-model="graph.name">
                         </md-input-container>
                     </td>
                     <td width="10%">
                         <md-input-container class="md-block">
-                            <input required ng-model="graph.edges">
-                            <div ng-messages="graph.edges.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
+                            <input ng-model="graph.edges">
                         </md-input-container>
                     </td>
                     <td width="10%">
                         <md-input-container class="md-block">
-                            <input required ng-model="graph.nodes">
-                            <div ng-messages="graph.nodes.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
+                            <input ng-model="graph.nodes">
                         </md-input-container>
                     </td>
                     <td width="10%">
                         <md-input-container class="md-block">
-                            <input required ng-model="graph.fileSize">
-                            <div ng-messages="graph.fileSize.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
+                            <input ng-model="graph.fileSize">
                         </md-input-container>
                     </td>
                     <td width="10%">
                         <md-input-container class="md-block">
-                            <input required ng-model="graph.fileType">
-                            <div ng-messages="graph.fileType.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
+                            <input ng-model="graph.fileType">
+                        </md-input-container>
+                    </td>
+                    <td width="10%">
+                        <md-input-container class="md-block">
+                            <input ng-model="graph.fileFormat">
                         </md-input-container>
                     </td>
                     <td width="25">
                         <md-input-container class="md-block">
-                            <input required ng-model="graph.downloadLink">
-                            <div ng-messages="graph.downloadLink.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
+                            <input ng-model="graph.downloadLink">
                         </md-input-container>
                     </td>
                 </tr>

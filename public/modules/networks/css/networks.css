@@ -1,12 +1,15 @@
 .content {
     margin-top: 50px;
 }
+
 .undecorated-link:hover {
     text-decoration: none;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
 .ng-invalid.ng-dirty {
     border-color: #FA787E;
 }
@@ -19,6 +22,17 @@
 	margin-left: 60px;
     margin-bottom: 40px;
 	background: #FFFFFF;
+}
+
+#filterOptions{
+ 	width: 800px;
+	margin-left: 60px;
+    margin-bottom: 20px;
+	background: #FFFFFF;
+}
+
+#orderBy{
+    margin-left: 12px;
 }
 
 body{
@@ -67,7 +81,7 @@ body{
 }
 
 .networkInfo{
-    margin: 0px 14px 14px 14px;
+    margin: 0 14px 14px 14px;
 }
 
 .networkSource{
@@ -75,7 +89,7 @@ body{
 }
 
 .individualNetworks{
-    margin: 0px 14px 14px 14px;
+    margin: 0 14px 14px 14px;
 }
 
 .nodeEdgeContent{
@@ -149,6 +163,8 @@ md-list-item.md-1-line{
 	background: #FFFFFF;
 }
 
+
+
 .indicator{
     background: rgba(170, 170, 170, 0.89);
     float: left;
@@ -220,8 +236,8 @@ md-list-item.md-1-line{
 }
 
 #addNetwork{
-    float: right;
-    margin: 45px;
+    margin-left: 420px;
+    margin-bottom: 30px;
 }
 
 .networkCount{

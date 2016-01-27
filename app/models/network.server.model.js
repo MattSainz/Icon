@@ -35,6 +35,10 @@ module.exports = function(app) {
             type: String,
             trim: true
         },
+        hostedBy: {
+            type: String,
+            trim: true
+        },
         nodeType: {
             type: String,
             trim: true
@@ -71,15 +75,13 @@ module.exports = function(app) {
             type: Number,
             default: 0
         },
-        fileType: {
-            type: String
-        },
         graphs: [{
             name: String,
             nodes: Number,
             edges: Number,
             fileSize: String,
             fileType: String,
+            fileFormat: String,
             downloadLink: String
         }]
     });
@@ -92,7 +94,6 @@ module.exports = function(app) {
 
     var Networks = mongoose.model('Network', NetworkSchema);
 
-    /*
     var stream = Networks.synchronize();
 
      var counter = 0;
@@ -107,7 +108,6 @@ module.exports = function(app) {
      stream.on('error', function(err){
         console.error(err);
      });
-     */
 
     /*
     var functions ={

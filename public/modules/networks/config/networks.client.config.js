@@ -104,7 +104,7 @@ networkModule.directive('editCard',['networkModel','$mdDialog', function(network
          };
 
          scope.cancel = function(network, networks){
-             if(network._id = 'new'){
+             if(network._id == 'new'){
                  networks.splice(networks.indexOf(network),1);
              }
              network.state = 'list';

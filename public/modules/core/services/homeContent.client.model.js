@@ -2,9 +2,9 @@
  * Created by Matthias on 9/22/15.
  */
 
-angular.module('core').service('homeContentModel', ['$rootScope', '$http', function($rootScope, $http) {
+"use strict";
 
-    this.entry = entry;
+angular.module('core').service('homeContentModel', ['$rootScope', '$http', function($rootScope, $http) {
 
     function entry(_id, title, contentBody, page, dateCreated){
         this._id         = _id         || '0';
@@ -15,6 +15,7 @@ angular.module('core').service('homeContentModel', ['$rootScope', '$http', funct
         this.oldEntry= false;
     }
 
+    this.entry = entry;
 
     this.getEntries = function() {
         return $http.get('/textContent/getContent').then(function (entries) {
@@ -30,26 +31,26 @@ angular.module('core').service('homeContentModel', ['$rootScope', '$http', funct
 
         $http({
             url: '/textContent/addContent',
-            method: "POST",
+            method: 'POST',
             data: entry,
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
-            console.log(status)
+            console.log(status);
         }).error(function (data, status, headers, config) {
-            console.log(status)
+            console.log(status);
         });
 
     };
 
     this.deleteEntry = function(entry){
         return $http.delete('/textContent/deleteContent/'+entry._id).then(function(ret){
-            console.log(ret)
+            console.log(ret);
         });
     };
 
     this.updateEntry = function(entry){
         $http.put('/textContent/updateEntry', entry).then(function(ret){
-            console.log(ret)
+            console.log(ret);
         });
     };
 

@@ -46,7 +46,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 
         $scope.editCancel = function(index){
             $scope.edit = -1;
-        }
+        };
 
 	}
 ]).directive('newContent', function(){
@@ -60,5 +60,5 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             index: '='
         },
         templateUrl: 'modules/core/partials/newContent.html'
-    }
+    };
 });

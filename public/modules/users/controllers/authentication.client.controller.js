@@ -10,6 +10,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 		$scope.signup = function() {
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
+				/*
 				$mdDialog.show(
                     $mdDialog.alert()
                         .parent(angular.element(document.querySelector('#popupContainer')))
@@ -20,6 +21,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
                         .ok('Got it!')
                         .targetEvent(ev)
                 );
+                */
 				// And redirect to the index page
 				//$location.path('/networks');
 			}).error(function(response) {
