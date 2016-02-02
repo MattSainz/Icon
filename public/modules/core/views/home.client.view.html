@@ -1,4 +1,4 @@
-<section ng-controller="HomeController">
+<section ng-controller="HomeController" ng-init="init()">
     <md-content>
 
         <!-- TODO move to partial and fix edit to be per item -->
@@ -26,6 +26,47 @@
         <div data-ng-repeat="entry in newContent | orderBy: 'dateCreated'">
             <div new-content entry="entry" cancel-function="cancel($index)" save-function="save($index)"> </div>
         </div>
+
+        <md-card id="infoCard">
+            <div ng-hide="data.isLoading" style="margin-right: 14px; margin-left: 14px; margin-top:14px;" layout="column" >
+                <label class="networkCount">Networks found: {{data.numEntries}}</label>
+                <label class="graphLabels">Domain Counts</label>
+
+                <canvas id="bar"
+                class="chart chart-bar"
+                chart-data="data.domains.data"
+                chart-labels="data.domains.labels"
+                chart-options="options"
+                width="380px"
+                height="80px">
+                </canvas>
+
+                <label class="graphLabels">Property Counts</label>
+                <canvas id="barProps"
+                    class="chart chart-bar"
+                    chart-data="data.properties.data"
+                    chart-labels="data.properties.labels"
+                    chart-options="options"
+                    width="380px"
+                    height="80px">
+                </canvas>
+
+                <label class="graphLabels">Node and Edge Count Distribution</label>
+                <canvas id="lineInfo"
+                        class="chart chart-line"
+                        chart-data="data.sizeDistSearch.data"
+                        chart-labels="data.sizeDistSearch.labels"
+                        chart-options="options"
+                        width="380px"
+                        height="60px">
+                </canvas>
+            </div>
+            <div ng-show="data.isLoading">
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular class="md-warn" md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+        </md-card>
 
         <md-button id="addContent" data-ng-hide="!authentication.user" class="md-fab" aria-label="Comment" ng-click="getContentTemplate()">
             <md-icon md-font-icon="material-icons"> add </md-icon>

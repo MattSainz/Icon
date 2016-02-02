@@ -20,9 +20,13 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
 
     var data = new Data();
 
-    this.subscribe = function(cb){
-       subscribers.push(cb);
-       cb(null, data);
+    this.subscribe = function(caller){
+       subscribers.push(caller);
+       caller.cb(null, data);
+    };
+
+    this.unsubscribe = function(id){
+        subscribers = _.reject(subscribers, ['id', id]);
     };
 
     this.reset = function(){
@@ -31,8 +35,8 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
     };
 
     function update(){
-        _.forEach(subscribers, function(cb){
-           cb(null, data);
+        _.forEach(subscribers, function(s){
+            s.cb(null, data);
         });
     }
 

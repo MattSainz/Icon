@@ -50,17 +50,20 @@ angular.module('networks').controller('NetworksController', [
             reverse: false
         };
 
-        dataService.subscribe(function(err, data){
-           $scope.pageData.loadingProgress = data.loadingProgress;
-           $scope.pageData.networks = data.networks;
-           $scope.pageData.numEntries = data.numNetworks;
-           $scope.pageData.loadingNetworks = data.isLoading;
-           if( ! data.isLoading ){
-               $scope.graphData.domains = data.domains;
-               $scope.graphData.properties = data.properties;
-               $scope.graphData.sizeDistSearch = data.sizeDist;
-               $scope.pageData.fileTypes = data.fileTypes;
-           }
+        dataService.subscribe({
+            cb: function (err, data) {
+                $scope.pageData.loadingProgress = data.loadingProgress;
+                $scope.pageData.networks = data.networks;
+                $scope.pageData.numEntries = data.numNetworks;
+                $scope.pageData.loadingNetworks = data.isLoading;
+                if (!data.isLoading) {
+                    $scope.graphData.domains = data.domains;
+                    $scope.graphData.properties = data.properties;
+                    $scope.graphData.sizeDistSearch = data.sizeDist;
+                    $scope.pageData.fileTypes = data.fileTypes;
+                }
+            },
+            id:'networksHome'
         });
 
 

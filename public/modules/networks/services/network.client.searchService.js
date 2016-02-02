@@ -31,7 +31,11 @@ angular.module('networks').service('searchService',[
             Formats checkbox selections into elasticsearch query
          */
         function doSearch(updatedData){
-           dataService.reset();
+            dataService.reset();
+            if( !updatedData ){
+                socket.emit('doSearch', {query:{'match_all':{}}});
+                return;
+            }
             var toRet;
 
             var checkBoxOr = {
