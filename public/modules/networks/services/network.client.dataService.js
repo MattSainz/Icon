@@ -15,6 +15,7 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
         this.domains = { data: [[]], labels:[]};
         this.properties = { data: [[]], labels:[]};
         this.sizeDist = {data:[[]], labels:[]};
+        this.fileTypes = []
     }
 
     var data = new Data();
@@ -57,9 +58,17 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
             network.state = 'list';
                 //sets ui state to list view instead of expanded tab
 
+            network.fileType = network._source.graphs[0].fileType;
+                //Lazy file type detection for use of editing data not public facing
+
             //converts raw file size from bytes to mb or gb
             _.map(network._source.graphs, function(graph){
                 graph.fileSize = fileSCon.convert(graph.fileSize);
+                data.fileTypes = _.unionBy(data.fileTypes, [{fileType: graph.fileType.trim(), active:false}], function(g){
+                    if(g){
+                        return g.fileType
+                    }
+                });
                 return graph;
             });
 

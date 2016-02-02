@@ -31,7 +31,7 @@ module.exports = {
 				'public/lib/Chart.js/Chart.min.js',
 				'public/lib/angular-chart.js/dist/angular-chart.min.js',
 				'public/lib/oboe-browser.min.js',
-				'public/lib/lodash/lodash.min.js',
+				'public/lib/lodash/dist/lodash.min.js',
 				'public/lib/socket.io-client/socket.io.js',
 				'public/lib/angular-socket-io/socket.min.js'
 			]

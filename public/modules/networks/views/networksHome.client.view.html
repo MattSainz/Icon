@@ -8,7 +8,7 @@
 
             <div ng-show="pageData.loadingNetworks">
                 <div layout="row" layout-sm="column" layout-align="space-around">
-                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    <md-progress-circular class="md-warn" md-mode="indeterminate"></md-progress-circular>
                 </div>
             </div>
 
@@ -45,6 +45,16 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
+                    </div>
+                </div>
+            </md-tab>
+
+            <md-tab data-ng-if="authentication.user" label="FileType">
+                <div id="fileType_tab">
+                    <div ng-repeat="type in pageData.fileTypes">
+                        <div class="attributeButton" flex="none">
+                            <md-checkbox ng-disabled="pageData.loadingNetworks" ng-change="filterFileTypes()" ng-model="type.active" >{{type.fileType}}</md-checkbox>
+                        </div>
                     </div>
                 </div>
             </md-tab>
@@ -158,6 +168,9 @@
                 </div>
                 <div ng-switch-when="edit">
                     <edit-card  network="network" networks="pageData.networks"></edit-card>
+                </div>
+                <div ng-switch-when="disabled">
+                    <!-- Render nothing (hack for file type filtering) -->
                 </div>
             </div>
         </div>

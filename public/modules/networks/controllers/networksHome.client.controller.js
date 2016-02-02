@@ -34,7 +34,8 @@ angular.module('networks').controller('NetworksController', [
             loadingNetworks : true,
             loadingProgress : 0,
             showMore : false,
-            networks : []
+            networks : [],
+            fileTypes: []
         };
 
         $scope.graphData = {
@@ -58,7 +59,7 @@ angular.module('networks').controller('NetworksController', [
                $scope.graphData.domains = data.domains;
                $scope.graphData.properties = data.properties;
                $scope.graphData.sizeDistSearch = data.sizeDist;
-               console.log($scope.pageData.networks);
+               $scope.pageData.fileTypes = data.fileTypes;
            }
         });
 
@@ -66,7 +67,6 @@ angular.module('networks').controller('NetworksController', [
         searchService.getMenuOptions(function(err, data){
             $scope.searchData.attrArr = data.attrArr;
             $scope.searchData.sizeInfo = data.sizeInfo;
-            console.log(data);
             $scope.graphData.sizeDistMenu = {
                 data : [data.sizeInfo[0].attrs.data, data.sizeInfo[3].attrs.data],
                 labels : data.sizeInfo[0].attrs.labels
@@ -75,6 +75,23 @@ angular.module('networks').controller('NetworksController', [
 
         $scope.doSearch = function(){
             searchService.doSearch($scope.searchData);
+        };
+
+        //Hack for file type filtering
+        $scope.filterFileTypes = function(){
+            var oneSet = false;
+            _.forEach($scope.pageData.networks, function(n){
+                n.state = 'list';
+                var enabledFileType = _.some($scope.pageData.fileTypes, {fileType: n.fileType, active:true});
+                if( !enabledFileType ){n.state = 'disabled'}
+                oneSet = enabledFileType || oneSet;
+            });
+
+            if(!oneSet){
+                _.forEach($scope.pageData.networks, function(n){
+                    n.state = 'list';
+                });
+            }
         };
 
         $scope.addNewNetworkTemplate = function(){
@@ -86,7 +103,6 @@ angular.module('networks').controller('NetworksController', [
         };
 
         $scope.resetFilter = function(){
-            console.log("Resetting");
             $scope.searchData.searchField = '';
             _.forEach($scope.searchData.attrArr, function(attr){
                 _.forEach(attr.attrs, function(a){
