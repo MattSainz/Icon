@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-  	db: 'localhost:2700',
+  	db: process.env.ICON_MONGO_DB || 'localhost:53194/icondb',
 	elastic:{
-        host: 'localhost:2900'
+        host: process.env.ICON_ELASTIC || 'localhost:9200'
     },
 	app: {
 		title: 'Icon - Development Environment'
