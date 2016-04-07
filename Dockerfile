@@ -1,4 +1,4 @@
-FROM node:0.12.7-onbuild
+FROM node:4.2.1-onbuild
 
 MAINTAINER Matthias Sainz
 
