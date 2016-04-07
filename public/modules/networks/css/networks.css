@@ -253,6 +253,6 @@ md-list-item.md-1-line{
     margin-bottom: 14px;
 }
 
-#barProps{
-
+[layout=column]{
+    display: block;
 }

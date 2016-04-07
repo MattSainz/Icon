@@ -174,7 +174,7 @@
                  </md-button>
              </div>
              <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
-                 <md-button ng-click="network._id == 'new' ? saveNew(network, $event) : save(network, $event)" class="md-raised">Save</md-button>
+                 <md-button ng-click="network._id == 'new' ? saveNew(network) : save(network, $event)" class="md-raised">Save</md-button>
                  <md-button ng-click="cancel(network, networks)" class="md-raised">Cancel</md-button>
                  <md-button ng-click="delete(network, networks, $event)" ng-hide="network._id == 'new'" class="md-raised md-accent">Delete</md-button>
              </section>

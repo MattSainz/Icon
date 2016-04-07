@@ -17,5 +17,14 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
              true
         );
 
+        Menus.addMenuItem(
+            'topbar',
+            'About',
+            '#!/about',
+            'item',
+            '#!/about',
+             true
+        );
+
 	}
 ]);

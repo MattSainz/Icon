@@ -12,42 +12,26 @@ var _ = require('lodash'),
 
 exports.addContent = function(req, res){
 
-    /*
-    passport.authenticate('local', function(err, user, info){
+    var newContent = new TextContent(req.body);
 
-        if(err || !user){
-            res.status(400).send(info);
-        } else {
-    */
-            var newContent = new TextContent(req.body);
-
-            newContent.save(function(err){
-                if(err){
-                    console.log("In err");
-                    console.log(err);
-                    return res.status(400).send({
-                        message: errorHandler.getErrorMessage(err)
-                    });
-                } else {
-                    console.log("Not in error but Err returned?");
-                    return res.status(201).send({
-                        message: 'New Content Created'
-                    });
-
-                }
-
+    newContent.save(function(err, ret){
+        if(err){
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
             });
-        /*
-        }//end auth
+        } else {
+            return res.status(201).send({
+                message:ret
+            });
+        }
+    }
+);
 
-    });//end passport
-    */
 
 };//end addContent
 
 exports.deleteContent = function(req, res){
-    console.log(req);
-    TextContent.remove({ _id: req.params._id }, function(err) {
+    TextContent.remove({ _id: req.query.id }, function(err) {
         if (!err) {
             res.status(200).send({
                 message : 'Item Deleted'
@@ -62,7 +46,6 @@ exports.deleteContent = function(req, res){
 };
 
 exports.updateContent = function(req, res){
-    console.log(req);
     TextContent.findById(req.body._id, function(err, oldEntry){
         oldEntry.title = req.body.title;
         oldEntry.contentBody= req.body.contentBody;
@@ -82,18 +65,34 @@ exports.updateContent = function(req, res){
 };
 
 exports.getContent = function(req, res){
-    TextContent.find({}, function(err, content){
+    TextContent.find({contentType: req.query.page}, function(err, content){
        if(err)
        {
           return res.status(500).send({
               message:err
-          })
+          });
+
        }else{
+
           return res.status(200).send({
               message: content
           });
        }
-
     });
-
 };
+
+exports.getAboutPages = function(req, res){
+  TextContent.find({contentType:'about'}, function(err, content){
+     if(err){
+         return res.status(500).send({
+             message:err
+         });
+     }else{
+         return res.status(200).send({
+             message: content
+         });
+     }
+  });
+};
+
+

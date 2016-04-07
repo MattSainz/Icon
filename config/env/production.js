@@ -9,6 +9,11 @@ module.exports = {
 		css: 'public/dist/application.min.css',
 		js: 'public/dist/application.min.js'
 	},
+	wiki:{
+		server: process.env.WIKI_SERVER || 'localhost',
+		path: process.env.WIKI_API_PATH || '',
+		debug: false
+	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',

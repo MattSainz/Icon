@@ -5,7 +5,7 @@ var networkModule = angular.module('networks');
  * Config
  */
 /*
-networkModule.config(['ChartJsProvider'], function(ChartJsProvider){
+networkModule.models(['ChartJsProvider'], function(ChartJsProvider){
    ChartJsProvider.setOptions({
       responsive:true,
       datasetFill: true
@@ -69,6 +69,7 @@ networkModule.directive('editCard',['networkModel','$mdDialog', function(network
                         .ok('Got it!')
                         .targetEvent(ev)
                 );
+                updatedDoc.state = 'list';
             });
         };
 
@@ -95,11 +96,13 @@ networkModule.directive('editCard',['networkModel','$mdDialog', function(network
                         .parent(angular.element(document.querySelector('#popupContainer')))
                         .clickOutsideToClose(true)
                         .title('Save Status')
-                        .content(res.data.message)
+                        .content('Save Successful!')
                         .ariaLabel('Save Status')
                         .ok('Got it!')
                         .targetEvent(ev)
                 );
+                newDoc.state = 'list';
+                newDoc._id = res.message.id;
              });
          };
 

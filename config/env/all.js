@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'Icon',
+		title: 'Index of Complex Networks',
 		description: 'Collection of networks',
 		keywords: 'Node.js, Express, AngularJS, MongoDB, Networks, Networks, Research'
 	},
@@ -16,6 +16,8 @@ module.exports = {
 
 				'public/lib/angular-material/angular-material.min.css',
                 'public/lib/angular-aria/angular-aria.min.css',
+				'public/lib/textAngular/dist/textAngular.css',
+				'public/lib/font-awesome/font-awesome.min.css',
 				'public/lib/angular-chart.js/dist/angular-chart/css'
 			],
 			js: [
@@ -33,6 +35,10 @@ module.exports = {
 				'public/lib/oboe-browser.min.js',
 				'public/lib/lodash/dist/lodash.min.js',
 				'public/lib/socket.io-client/socket.io.js',
+				'public/lib/textAngular/dist/textAngular-rangy.min.js',
+				'public/lib/textAngular/dist/textAngular-sanitize.min.js',
+				'public/lib/textAngular/dist/textAngularSetup.js',
+				'public/lib/textAngular/dist/textAngular.js',
 				'public/lib/angular-socket-io/socket.min.js'
 			]
 		},

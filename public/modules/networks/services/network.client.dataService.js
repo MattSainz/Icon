@@ -12,6 +12,7 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
         this.loadingProgress = 0;
         this.isLoading = true;
         this.numNetworks = 0;
+        this.numEntries = 0;
         this.domains = { data: [[]], labels:[]};
         this.properties = { data: [[]], labels:[]};
         this.sizeDist = {data:[[]], labels:[]};
@@ -65,15 +66,12 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
             network.fileType = network._source.graphs[0].fileType;
                 //Lazy file type detection for use of editing data not public facing
 
-            //converts raw file size from bytes to mb or gb
-            _.map(network._source.graphs, function(graph){
-                graph.fileSize = fileSCon.convert(graph.fileSize);
+            _.forEach(network._source.graphs, function(graph){
                 data.fileTypes = _.unionBy(data.fileTypes, [{fileType: graph.fileType.trim(), active:false}], function(g){
                     if(g){
                         return g.fileType
                     }
                 });
-                return graph;
             });
 
             var len = network._source.graphs.length;
@@ -129,6 +127,8 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
           return toRet;
        },[]));
 
+       data.numEntries = individualGraphs.length;
+
        //Get range of graph sizes for the current data
        var nodes = _.map(individualGraphs, function(n){ return n.nodes });
        var edges = _.map(individualGraphs, function(n){ return n.edges});
@@ -148,6 +148,7 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
             data: [sizeDistNodes.data, sizeDistEdges.data],
             labels: sizeDistNodes.labels
        };
+
     }
 
 }]);

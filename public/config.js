@@ -14,7 +14,8 @@ var ApplicationConfiguration = (function() {
 		'ngAria',
         'ui.router',
 		'chart.js',
-		'btford.socket-io'
+		'btford.socket-io',
+		'textAngular'
     ];
 
 	// Add a new vertical module

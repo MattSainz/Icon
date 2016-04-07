@@ -1,54 +1,59 @@
 <section ng-controller="HomeController" ng-init="init()">
     <md-content>
 
-        <!-- TODO move to partial and fix edit to be per item -->
         <div ng-repeat="entry in entries | orderBy: 'dateCreated'">
             <div class="animate-switch-container">
-            <div class="animate-switch" ng-if="$index == edit">
-                <div new-content entry="entry" cancel-function="editCancel($index)" save-function="update($index)" delete-function="delete($index)"> </div>
-            </div>
-            <div class="animate-switch" ng-if="$index != edit">
-                <md-card class="homeCard">
-                    <md-card-content>
-                        <h2 class="md-title">{{entry.title}}</h2>
-                        <p>
-                            {{entry.contentBody}}
-                        </p>
-                        <section data-ng-hide="!authentication.user" layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-                            <md-button data-ng-hide="!authentication.user" ng-click="editToggle($index)">Edit</md-button>
-                        </section>
-                    </md-card-content>
-                </md-card>
-            </div>
+                <div class="animate-switch" ng-if="entry.edit == true">
+                    <div ng-if="entry._id != -1">
+                        <div new-content entry="entry" cancel-function="cancel($index)" save-function="update($index)"
+                             delete-function="delete($index)"></div>
+                    </div>
+                    <div ng-if="entry._id == -1">
+                        <div new-content entry="entry" cancel-function="cancel($index)" save-function="save($index)"
+                             delete-function="delete($index)"></div>
+                    </div>
+                </div>
+                <div class="animate-switch" ng-if="entry.edit == false">
+                    <md-card class="homeCard">
+                        <md-card-content>
+                            <h2 class="md-title">{{entry.title}}</h2>
+                            <div ng-bind-html="entry.contentBody"></div>
+                            <section data-ng-hide="!authentication.user" layout="row" layout-sm="column"
+                                     layout-align="end center" layout-wrap>
+                                <md-button data-ng-hide="!authentication.user" ng-click="entry.edit = true">Edit
+                                </md-button>
+                            </section>
+                        </md-card-content>
+                    </md-card>
+                </div>
             </div>
         </div>
+        <!-- TODO move to partial and fix edit to be per item -->
 
-        <div data-ng-repeat="entry in newContent | orderBy: 'dateCreated'">
-            <div new-content entry="entry" cancel-function="cancel($index)" save-function="save($index)"> </div>
-        </div>
 
         <md-card id="infoCard">
-            <div ng-hide="data.isLoading" style="margin-right: 14px; margin-left: 14px; margin-top:14px;" layout="column" >
+            <div ng-hide="data.isLoading" style="margin-right: 14px; margin-left: 14px; margin-top:14px;"
+                 layout="column">
                 <label class="networkCount">Networks found: {{data.numEntries}}</label>
                 <label class="graphLabels">Domain Counts</label>
 
                 <canvas id="bar"
-                class="chart chart-bar"
-                chart-data="data.domains.data"
-                chart-labels="data.domains.labels"
-                chart-options="options"
-                width="380px"
-                height="80px">
+                        class="chart chart-bar"
+                        chart-data="data.domains.data"
+                        chart-labels="data.domains.labels"
+                        chart-options="options"
+                        width="380px"
+                        height="80px">
                 </canvas>
 
                 <label class="graphLabels">Property Counts</label>
                 <canvas id="barProps"
-                    class="chart chart-bar"
-                    chart-data="data.properties.data"
-                    chart-labels="data.properties.labels"
-                    chart-options="options"
-                    width="380px"
-                    height="80px">
+                        class="chart chart-bar"
+                        chart-data="data.properties.data"
+                        chart-labels="data.properties.labels"
+                        chart-options="options"
+                        width="380px"
+                        height="80px">
                 </canvas>
 
                 <label class="graphLabels">Node and Edge Count Distribution</label>
@@ -68,8 +73,9 @@
             </div>
         </md-card>
 
-        <md-button id="addContent" data-ng-hide="!authentication.user" class="md-fab" aria-label="Comment" ng-click="getContentTemplate()">
-            <md-icon md-font-icon="material-icons"> add </md-icon>
+        <md-button id="addContent" data-ng-hide="!authentication.user" class="md-fab" aria-label="Comment"
+                   ng-click="getContentTemplate()">
+            <md-icon md-font-icon="material-icons"> add</md-icon>
         </md-button>
 
     </md-content>

@@ -54,7 +54,8 @@ angular.module('networks').controller('NetworksController', [
             cb: function (err, data) {
                 $scope.pageData.loadingProgress = data.loadingProgress;
                 $scope.pageData.networks = data.networks;
-                $scope.pageData.numEntries = data.numNetworks;
+                $scope.pageData.numNetworks = data.numNetworks;
+                $scope.pageData.numEntries = data.numEntries;
                 $scope.pageData.loadingNetworks = data.isLoading;
                 if (!data.isLoading) {
                     $scope.graphData.domains = data.domains;
@@ -86,6 +87,7 @@ angular.module('networks').controller('NetworksController', [
             _.forEach($scope.pageData.networks, function(n){
                 n.state = 'list';
                 var enabledFileType = _.some($scope.pageData.fileTypes, {fileType: n.fileType, active:true});
+                console.log(enabledFileType);
                 if( !enabledFileType ){n.state = 'disabled'}
                 oneSet = enabledFileType || oneSet;
             });

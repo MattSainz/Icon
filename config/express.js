@@ -40,7 +40,7 @@ module.exports = function(db) {
 	//set up elasticsearch client
 	app.set('elastic' ,new elastic.Client({
         host: config.elastic.host,
-        log: 'trace'
+        log: 'error'
 	}));
 
 	// Globbing model files
@@ -118,6 +118,8 @@ module.exports = function(db) {
 	app.use(helmet.ienoopen());
 	app.disable('x-powered-by');
 
+
+
 	// Setting the app router and static folder
 	app.use(express.static(path.resolve('./public')));
 
@@ -154,8 +156,8 @@ module.exports = function(db) {
 		console.log('Securely using https protocol');
 
 		// Load SSL key and certificate
-		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
-		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+		var privateKey = fs.readFileSync('./models/sslcerts/key.pem', 'utf8');
+		var certificate = fs.readFileSync('./models/sslcerts/cert.pem', 'utf8');
 
 		//TODO add io support
 
@@ -179,6 +181,9 @@ module.exports = function(db) {
 	config.getGlobbedFiles('./app/socketio/**/*.js').forEach(function(socketPath) {
 		require(path.resolve(socketPath))(app);
 	});
+
+	//var promise  = require('../app/utils/linkRotUtil');
+	//promise();
 
 	// Return Express server instance
 	return app;

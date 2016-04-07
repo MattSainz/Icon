@@ -20,6 +20,7 @@ angular.module('networks').service('searchService',[
             networkModel.getAttrs().then(function(attrs){
                 data.attrArr = attrs.checkbox;
                 data.sizeInfo = attrs.size;
+                console.log(data.attrArr);
                 defaultSearch = data;
             }).finally(function(){
                 cb(null, data);

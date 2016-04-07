@@ -44,9 +44,5 @@ module.exports = function(app){
 
       });
 
-      socket.on('disconnect', function(){
-
-      });
-
   });
 };

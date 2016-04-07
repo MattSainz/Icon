@@ -13,7 +13,7 @@ angular.module('networks').factory('networkTemplate',[function(){
             hostedBy: 'Who is hosting the actual data',
             edgeType:'Edge Tybe',
             fileType: null,
-            graphProperties: "i.e Directed",
+            graphProperties: "New",
             graphs: [{
                downloadLink:'http://',
                edges:0,

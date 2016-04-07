@@ -18,9 +18,9 @@ app.config(['$locationProvider',
 app.config(ApplicationConfiguration.angularMaterialColor);
 
 //Allow the use of lodash in angular
-app.factory('_', function($window){
-	return( $window._ );
-});
+app.factory('_', ['$window', function($window){
+	return $window._ ;
+}]);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {

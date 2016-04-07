@@ -17214,7 +17214,7 @@ function $SceProvider() {
      * @kind function
      *
      * @return {Boolean} true if SCE is enabled, false otherwise.  If you want to set the value, you
-     * have to do it at module config time on {@link ng.$sceProvider $sceProvider}.
+     * have to do it at module models time on {@link ng.$sceProvider $sceProvider}.
      *
      * @description
      * Returns a boolean indicating if SCE is enabled.
@@ -32020,7 +32020,7 @@ var $$AnimateQueueProvider = ['$animateProvider', function($animateProvider) {
 
     var callbackRegistry = {};
 
-    // remember that the classNameFilter is set during the provider/config
+    // remember that the classNameFilter is set during the provider/models
     // stage therefore we can optimize here and setup a helper function
     var classNameFilter = $animateProvider.classNameFilter();
     var isAnimatableClassName = !classNameFilter
@@ -35483,7 +35483,7 @@ Manager.prototype.updateSocketIds = function(){
 Emitter(Manager.prototype);
 
 /**
- * Sets the `reconnection` config.
+ * Sets the `reconnection` models.
  *
  * @param {Boolean} true/false if it should automatically reconnect
  * @return {Manager} self or value
@@ -35497,7 +35497,7 @@ Manager.prototype.reconnection = function(v){
 };
 
 /**
- * Sets the reconnection attempts config.
+ * Sets the reconnection attempts models.
  *
  * @param {Number} max reconnection attempts before giving up
  * @return {Manager} self or value
@@ -42830,7 +42830,7 @@ var networkModule = angular.module('networks');
  * Config
  */
 /*
-networkModule.config(['ChartJsProvider'], function(ChartJsProvider){
+networkModule.models(['ChartJsProvider'], function(ChartJsProvider){
    ChartJsProvider.setOptions({
       responsive:true,
       datasetFill: true

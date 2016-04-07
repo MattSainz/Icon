@@ -5,6 +5,11 @@ module.exports = {
 	elastic:{
         host: process.env.ICON_ELASTIC || 'localhost:9200'
     },
+	wiki:{
+		server: process.env.WIKI_SERVER || 'localhost',
+		path: process.env.WIKI_API_PATH || '',
+		debug: true
+	},
 	app: {
 		title: 'Icon - Development Environment'
 	},

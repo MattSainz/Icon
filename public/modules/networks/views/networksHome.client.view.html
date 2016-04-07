@@ -22,7 +22,6 @@
 
             </div>
             </md-tab>
-
             <!--       Size Tab       -->
             <md-tab label="Size">
                 <div id="size_tab">
@@ -51,9 +50,9 @@
 
             <md-tab data-ng-if="authentication.user" label="FileType">
                 <div id="fileType_tab">
-                    <div ng-repeat="type in pageData.fileTypes">
+                    <div ng-repeat="t in pageData.fileTypes">
                         <div class="attributeButton" flex="none">
-                            <md-checkbox ng-disabled="pageData.loadingNetworks" ng-change="filterFileTypes()" ng-model="type.active" >{{type.fileType}}</md-checkbox>
+                            <md-checkbox ng-disabled="pageData.loadingNetworks" ng-change="filterFileTypes()" ng-model="t.active" >{{t.fileType}}</md-checkbox>
                         </div>
                     </div>
                 </div>
@@ -61,10 +60,12 @@
 
         </md-tabs>
         <md-divider></md-divider>
+
         <div id="searchBox" layout="row">
+
             <md-input-container flex="grow">
                 <label>(This) OR (That)</label>
-                <input enter-key="searchButton()" ng-disabled="pageData.loadingNetworks" ng-model="searchData.searchField">
+                <input ng-keyup="$event.keyCode == 13 && doSearch()"  ng-disabled="pageData.loadingNetworks" ng-model="searchData.searchField">
             </md-input-container>
 
             <md-button id="searchButton" ng-click="doSearch()" aria-label="Search">
@@ -73,17 +74,17 @@
 
             <md-icon md-font-icon="material-icons" ng-click="showSearchInfo($event)" style="maring-right:8px;"> info </md-icon>
 
-
         </div>
         </div>
-
-
 
         <md-divider style="margin-top:25px" ng-show="pageData.showMore"></md-divider>
 
-
         <div ng-show="pageData.showMore" style="margin-right: 14px; margin-left: 14px; margin-top:14px;" layout="column" >
-            <label class="networkCount">Networks found: {{pageData.numEntries}}</label>
+            <div layout="row" layout-align="start start" flex>
+                <label style="margin-right: 10px" class="networkCount">Networks found: {{pageData.numNetworks}}</label>
+                <label class="networkCount">Datasets found: {{pageData.numEntries}}</label>
+            </div>
+
             <label class="graphLabels">Domain Counts</label>
 
             <canvas id="bar"
@@ -141,6 +142,9 @@
                         </md-option>
                         <md-option value="_source.maxEdges">
                            EDGESIZE
+                        </md-option>
+                        <md-option value="_source.updateDate">
+                           UPDATE DATE
                         </md-option>
                     </md-select>
                 </md-input-container>

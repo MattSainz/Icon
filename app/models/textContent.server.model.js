@@ -23,6 +23,10 @@ module.exports = function(app) {
             type: String,
             trim: true,
             default: 'home'
+        },
+        dateCreated:{
+            type: Date,
+            default: Date.now()
         }
     });
 

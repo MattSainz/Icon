@@ -18,7 +18,7 @@ mongo:
 #   volumes:
 #       - "./public/modules:/home/mean/public/modules"
 #       - "./app:/home/mean/app"
-#       - "./config:/home/mean/config"
+#       - "./models:/home/mean/models"
 #   ports:
 #       - "35729:35729"
 #   expose:

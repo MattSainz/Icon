@@ -11,16 +11,18 @@
 
                 <md-input-container flex="100">
                     <label>Content</label>
-                    <textarea required name="content" ng-model="entry.contentBody" columns="1"></textarea>
+                    <text-angular ng-model="entry.contentBody"> </text-angular>
                 </md-input-container>
             </div>
             <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-                <md-button class="md-raised" ng-click="saveFunction(index)">Save</md-button>
-                <md-button class="md-raised" ng-click="cancelFunction(index)">Cancel</md-button>
-                <md-button class="md-raised" ng-click="deleteFunction(index)">Delete</md-button>
+                <md-button ng-click="saveFunction($index)">Save</md-button>
+                <md-button ng-click="cancelFunction($index, $event)">Cancel</md-button>
+                <md-button ng-hide="entry._id == -1" class="md-raised" ng-click="deleteFunction($index)">Delete</md-button>
             </section>
         </form>
 
     </md-card-content>
 </md-card>
+
+
 

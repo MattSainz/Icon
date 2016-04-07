@@ -9,10 +9,22 @@ module.exports = function(app){
     var networkController = require('../controllers/networks.server.controller.js');
 
     app.route('/networks/readFromFile').get(networkController.loadFromFile);
-    app.route('/networks/addNetwork').post(passport.authenticate('session'),networkController.addNetwork);
-    app.route('/networks/updateNetwork').put(passport.authenticate('session'),networkController.updateNetwork);
-    app.route('/networks/deleteNetwork').put(passport.authenticate('session'), networkController.deleteNetwork);
+    app.route('/networks/addNetwork').post(passport.authenticate('session'), requiresLogin,networkController.addNetwork);
+    app.route('/networks/updateNetwork').put(passport.authenticate('session'), requiresLogin,networkController.updateNetwork);
+    app.route('/networks/deleteNetwork').put(passport.authenticate('session'), requiresLogin, networkController.deleteNetwork);
     app.route('/networks/getUniqueAttrs').get(networkController.getUniqueAttrs);
     app.route('/networks/doSearchOld').post(networkController.getNetworks);
     app.route('/networks/syncElastic').get(networkController.syncElastic);
+    app.route('/networks/updateDate').get(networkController.addDate);
+    app.route('/networks/getJSON').get(passport.authenticate('session'), requiresLogin, networkController.JSONDump);
+
+    function requiresLogin(req, res, next){
+      	if (!req.isAuthenticated()) {
+            return res.status(401).send({
+                message: 'User is not logged in'
+            });
+	    }
+    	next();
+    }
+
 };

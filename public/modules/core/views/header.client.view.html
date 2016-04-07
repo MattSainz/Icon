@@ -2,7 +2,7 @@
     <md-content id="myToolbar">
         <md-toolbar layout="row" layout-align="space-around center">
             <h2 class="md-toolbar-tools md-raised">
-                <a href="#!/">Icon</a>
+                <a href="#!/">Index of Complex Networks</a>
             </h2>
 
             <div data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ui-route="{{item.uiRoute}}">

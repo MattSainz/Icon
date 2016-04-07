@@ -20,16 +20,16 @@
         </md-button>
 
     </div>
-    <div class="networkInfo" layout="row" flex="grow">
+    <div class="networkInfo" layout="row">
 
-        <div class="networkInfoLeft" flex="60">
+        <div class="networkInfoLeft" flex>
             <label class="contentLabel">Description</label>
             <div class="descriptionContent contentBox contentBox-{{network._source.networkDomain}}" >
                 {{network._source.description}}
             </div>
         </div>
 
-        <div class="networkInfoRight" layout="column" flex="40">
+        <div class="networkInfoRight" layout="column" flex>
             <div>
                 <label class="contentLabel">Network Summary</label>
                 <div class="nodeEdgeContent contentBox contentBox-{{network._source.networkDomain}}">
@@ -86,11 +86,11 @@
 
     </div>
 
-    <div class="networkSource" layout="row" flex="grow">
-        <div>
+    <div class="networkSource" layout="row">
+        <div flex>
             <label class="contentLabel">Citation</label>
             <div layout="row" layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
-                <div flex="grow">
+                <div>
                     {{network._source.citation}}
                     <a href="{{network._source.sourceUrl}}">Link</a>
                 </div>
@@ -98,11 +98,11 @@
         </div>
     </div>
 
-    <div class="networkSource" layout="row" flex="grow">
+    <div class="networkSource" layout="row">
         <div style="width: 100%">
             <label class="contentLabel">Hosted By</label>
             <div layout="row"  layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
-                <div flex="grow" >
+                <div>
                     {{(network._source.hostedBy) ? network._source.hostedBy : 'Not provided'}}
                 </div>
             </div>
@@ -126,7 +126,7 @@
                     <td width="45%"> {{graph.name}} </td>
                     <td width="10%">{{graph.edges}} </td>
                     <td width="10%">{{graph.nodes}} </td>
-                    <td width="10%">{{graph.fileSize}} </td>
+                    <td width="10%">{{graph.fileSize | fileSize}} </td>
                     <td width="10%">{{graph.fileType}} </td>
                     <td width="10%"> {{graph.fileFormat}} </td>
                     <td width="25"> <a href="{{graph.downloadLink}}">Link</a> </td>
