@@ -1,0 +1,18 @@
+{
+  "name": "angular-global-injector",
+  "version": "0.0.2",
+  "main": "./angular-global-injector.js",
+  "dependencies": {
+    "angular": "~1.2.26"
+  },
+  "homepage": "https://github.com/btesser/angular-global-injector",
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "2306bb0c3713121c3d5459d2d9734161b7670475"
+  },
+  "_source": "git://github.com/btesser/angular-global-injector.git",
+  "_target": "0.0.2",
+  "_originalSource": "angular-global-injector"
+}

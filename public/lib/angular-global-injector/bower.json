@@ -1,0 +1,8 @@
+{
+  "name": "angular-global-injector",
+  "version": "0.0.2",
+  "main": "./angular-global-injector.js",
+  "dependencies": {
+    "angular": "~1.2.26"
+  }
+}
