@@ -103,10 +103,10 @@ module.exports = function (app) {
         }],
         updateDate:{ type:Date, default:Date.now }
     });
-
+/*
     NetworkSchema.post('save', function (doc) {
         if (!client || (doc == undefined)) return;
-        /*
+//
         var linkRot = _.reduce(doc.brokenLinks, function(accum, b){
             console.log('B!!');
             console.log(b);
@@ -117,7 +117,7 @@ module.exports = function (app) {
                 ' Type: ' + bP.type                    +
                 ' Url: '  + bP.url +'\n';
         },'');
-        */
+        //
 
         var linkRot = '';
 
@@ -189,7 +189,7 @@ module.exports = function (app) {
         //Checks if document is already in wiki
         if (doc.inWiki) {
 
-            /*TODO fix title change logic
+            //TODO fix title change logic
             if (doc.oldTitle != '' && doc.title != doc.oldTitle) {
                 console.log(doc.title + ' old: ' + doc.oldTitle);
                 //Copy old public portion of page and then delete it
@@ -207,7 +207,7 @@ module.exports = function (app) {
                     })
                 });
             }
-            */
+            //
 
 
             client.edit(doc.title + 'readOnly', content, doc.description.trim(), function(err,ret){
@@ -238,7 +238,7 @@ module.exports = function (app) {
             if (err) console.error(err);
         });
     });
-
+*/
 
     NetworkSchema.plugin(mongoosastic, {
         hydrate: true,

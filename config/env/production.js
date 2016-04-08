@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
- 	db: process.env.MONGO_DB,
+ 	db: process.env.MONGO_DB || 'localhost:27017',
 	elastic:{
-        host: process.env.ELASTIC_DB
-    },
+     host: process.env.ELASTIC_DB || 'localhost:9300'
+  },
 	assets: {
 		css: 'public/dist/application.min.css',
 		js: 'public/dist/application.min.js'
