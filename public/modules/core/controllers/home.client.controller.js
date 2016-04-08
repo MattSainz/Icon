@@ -21,7 +21,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
                    $scope.data.domains = data.domains;
                    $scope.data.properties = data.properties;
                    $scope.data.sizeDistSearch = data.sizeDist;
-                   $scope.data.numEntries = data.numNetworks;
+                   $scope.data.numEntries = data.numEntries;
+                   $scope.data.numNetworks = data.numNetworks;
                    dataService.unsubscribe('home');
                }
             },
