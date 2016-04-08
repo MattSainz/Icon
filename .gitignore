@@ -4,7 +4,6 @@
 npm-debug.log
 Dockerfile
 node_modules/
-public/lib
 app/tests/coverage/
 .bower-*/
 .idea/

@@ -34,8 +34,11 @@
         <md-card id="infoCard">
             <div ng-hide="data.isLoading" style="margin-right: 14px; margin-left: 14px; margin-top:14px;"
                  layout="column">
-                <label class="networkCount">Networks found: {{data.numEntries}}</label>
-                <label class="graphLabels">Domain Counts</label>
+
+                <div layout="row" layout-align="start start" flex>
+                    <label style="margin-right: 10px" class="networkCount">Networks found: {{pageData.numNetworks}}</label>
+                    <label class="networkCount">Datasets found: {{pageData.numEntries}}</label>
+                </div>
 
                 <canvas id="bar"
                         class="chart chart-bar"
