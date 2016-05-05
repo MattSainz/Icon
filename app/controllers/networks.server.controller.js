@@ -11,7 +11,7 @@ var _ = require('lodash'),
     Networks = mongoose.model('Network'),
     async = require('async'),
     path = require('path'),
-    Q = require('Q');
+    Q = require('q');
 
 var fs = require('fs');
 
@@ -361,10 +361,12 @@ exports.syncElastic = function (req, res) {
 
     stream.on('close', function () {
         console.log('Indexed: ' + counter);
+        req.status(200).send({message:'Elastic Updated'});
     });
 
     stream.on('error', function (err) {
         console.error(err);
+        req.status(400).send({message:err});
     });
 };
 
