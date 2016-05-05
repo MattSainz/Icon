@@ -361,12 +361,12 @@ exports.syncElastic = function (req, res) {
 
     stream.on('close', function () {
         console.log('Indexed: ' + counter);
-        req.status(200).send({message:'Elastic Updated'});
+        res.status(200).send({message:'Elastic Updated'});
     });
 
     stream.on('error', function (err) {
         console.error(err);
-        req.status(400).send({message:err});
+        res.status(400).send({message:err});
     });
 };
 
