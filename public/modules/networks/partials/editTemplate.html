@@ -107,9 +107,16 @@
                  <label>Hosted By</label>
                  <input ng-model="network._source.hostedBy">
             </md-input-container>
+            <div>
+                <label ng-show="network._source.gml.name">Current File: {{network._source.gml.name}}</label>
+                <md-input-container>
+                    <label>GML File (Only accepts .gml, .zip, and .tar.gz</label>
+                    <input disabled style="width: 650px" ng-model="file.name">
+                </md-input-container>
+                <md-button ngf-select ng-model="file" name="file" ngf-accept="'.gml,.zip,.tar.gz'" ngf-pattern="'.gml,.zip,.tar.gz'">Select</md-button>
+            </div>
         </div>
     </div>
-
 
     <div class="individualNetworks" layout="column">
          <label class="contentLabel">Individual Graphs and Info</label>
@@ -118,8 +125,8 @@
                 <tr  class="networkRow">
                     <td width="10%"> </td>
                     <td width="35%"> Name </td>
-                    <td width="10%"> Edges </td>
                     <td width="10%"> Nodes </td>
+                    <td width="10%"> Edges </td>
                     <td width="10%"> File Size</td>
                     <td width="10%"> File Type </td>
                     <td width="10%"> File Format</td>

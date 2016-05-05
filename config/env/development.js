@@ -5,6 +5,7 @@ module.exports = {
 	elastic:{
         host: process.env.ICON_ELASTIC || 'localhost:9200'
     },
+	gmlPath:'/Users/Matthias/Code/Icon/public/gml_files',
 	wiki:{
 		server: process.env.WIKI_SERVER || 'localhost',
 		path: process.env.WIKI_API_PATH || '',

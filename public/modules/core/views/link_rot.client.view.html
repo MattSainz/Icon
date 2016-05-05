@@ -1,0 +1,17 @@
+<section ng-controller="LinkRotController" ng-init="init()">
+<md-content>
+    <md-card>
+        <md-list>
+            <md-subheader class="md-no-sticky">Broken Links</md-subheader>
+            <md-list-item class="md-3-line" ng-repeat="link in badLinks">
+                <div class="md-list-item-text" layout="column">
+                    <h3>Title: {{ link.networkTitle}}</h3>
+                    <h4>Link Type: {{ link.linkType }}</h4>
+                    <h4>Reason: {{ link.reason }}</h4>
+                    <p>URL: {{  link.url}}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-card>
+</md-content>
+</section>

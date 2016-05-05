@@ -1,0 +1,21 @@
+<section ng-controller="JsonEditController">
+<md-content>
+    <md-card style="width: 800px">
+        <div style="width: 600px; padding: 12px">
+            <p>
+                To update several records at a time acquire the JSON from the JSON button. Save the file and edit with
+                your favorite editor or text manipulation tools (see sed and awk). Then paste your changes into the text box
+                in json format with each entry in an array. Then press save!
+            </p>
+        </div>
+        <md-input-container style="padding: 12px;" class="md-block">
+            <label>JSON INPUT</label>
+                <textarea ng-model="jsonData" md-select-on-focus></textarea>
+        </md-input-container>
+        <md-button-container>
+            <md-button ng-click="save()">Save</md-button>
+            <a type="button" href="/networks/getJSON"><md-button>Get JSON</md-button></a>
+        </md-button-container>
+    </md-card>
+</md-content>
+</section>

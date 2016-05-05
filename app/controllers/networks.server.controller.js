@@ -9,7 +9,9 @@ var _ = require('lodash'),
     errorHandler = require('./errors.server.controller.js'),
     mongoose = require('mongoose'),
     Networks = mongoose.model('Network'),
-    async = require('async');
+    async = require('async'),
+    path = require('path'),
+    Q = require('Q');
 
 var fs = require('fs');
 
@@ -132,6 +134,7 @@ exports.getNetworks = function (req, res) {
         });
     }
 
+
     Networks.search(req.body.query, req.body.options, function (err, content) {
         if (err) {
             return res.status(500).send({
@@ -163,6 +166,79 @@ exports.JSONDump = function(req, res){
       res.setHeader('Content-Type', 'application/json');
       res.status(200).send(JSON.stringify(content, null, 2));
   });
+
+};
+
+exports.updateJSON = function(req, res){
+
+    var bulkNetwork = Networks.collection.initializeUnorderedBulkOp();
+    var runBulk = false;
+    var doneSavingNew = Q.defer();
+
+    var newDocs = [];
+    req.body.forEach(function(doc){
+       if(doc._id.toLowerCase() == 'new') {
+           delete doc._id;
+           newDocs.push(doc);
+       }else{
+           runBulk = true;
+           bulkNetwork.find({'_id':doc._id}).save(doc);
+       }
+    });
+
+    if( newDocs.length > 0 ) {
+        Networks.create(newDocs, function (err, toRet) {
+            (err) ? doneSavingNew.resolve(err) : doneSavingNew.resolve(toRet);
+        });
+    } else {
+        doneSavingNew.resolve(false);
+    }
+
+
+    doneSavingNew.promise.then(function(isDocs){
+        if(runBulk) {
+            bulkNetwork.execute(function (err, result) {
+                if (!err) {
+                    res.status(200).send({message: 'Successfully Updated'})
+                } else {
+                    res.status(400).send({message: 'Error Saving Networks'})
+                }
+            });
+        } else if(isDocs){
+            res.status(200).send({message: 'Successfully Saved'});
+        } else {
+            res.status(400).send({message:'No Documents Found to Insert or Update'})
+        }
+    });
+
+};
+
+exports.uploadGML = function(req, res){
+    res.status(200).send({path:req.files.file.path})
+};
+
+exports.downloadGML = function(req, res){
+   var file = req.body.path;
+   res.download(file);
+};
+
+exports.getLinkRot = function(req, res){
+   Networks.find({}, function(err, content){
+      var links = [];
+      var brokenCount = 0;
+
+      _.forEach(content, function(c){
+           if( c.brokenLinks && c.brokenLinks.length > 0 ) {
+               brokenCount++;
+               links.push(c.brokenLinks);
+           }
+      });
+      console.log('Number of broken links: ' + brokenCount);
+
+      res.status(200).send({
+         message:links
+      });
+   });
 };
 
 //TODO move to model

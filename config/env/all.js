@@ -39,7 +39,9 @@ module.exports = {
 				'public/lib/textAngular/dist/textAngular-sanitize.min.js',
 				'public/lib/textAngular/dist/textAngularSetup.js',
 				'public/lib/textAngular/dist/textAngular.js',
-				'public/lib/angular-socket-io/socket.min.js'
+				'public/lib/angular-socket-io/socket.min.js',
+				'public/lib/ng-file-upload/ng-file-upload.min.js',
+				'public/lib/ng-file-upload/ng-file-upload-shim.min.js'
 			]
 		},
 		css: [

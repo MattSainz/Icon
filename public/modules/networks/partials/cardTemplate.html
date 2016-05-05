@@ -59,7 +59,7 @@
                             Avg Edges
                         </div>
                         <div>
-                            {{network.avgEdges}}
+                            {{network.avgEdges | number : 2}}
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                            Avg Nodes
                         </div>
                         <div>
-                            {{network.avgNodes}}
+                            {{network.avgNodes | number : 2}}
                         </div>
                     </div>
                 </div>
@@ -104,6 +104,12 @@
             <div layout="row"  layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
                 <div>
                     {{(network._source.hostedBy) ? network._source.hostedBy : 'Not provided'}}
+                </div>
+            </div>
+            <div ng-show="authentication.user && network._source.gml.path" >
+                <label class="contentLabel">GML Download</label>
+                <div layout="row"  layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
+                    <md-button ng-click="download(network._source.gml.path)">Download</md-button>
                 </div>
             </div>
         </div>

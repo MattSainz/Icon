@@ -12,6 +12,7 @@ var ApplicationConfiguration = (function() {
         'ngSanitize',
 		'ngMaterial',
 		'ngAria',
+		'ngFileUpload',
         'ui.router',
 		'chart.js',
 		'btford.socket-io',

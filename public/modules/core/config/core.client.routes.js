@@ -15,6 +15,14 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('about',{
 			url:'/about',
 			templateUrl: 'modules/core/views/about.client.view.html'
+		}).
+		state('linkRot',{
+			url:'/link_rot',
+			templateUrl:'modules/core/views/link_rot.client.view.html'
+		}).
+		state('jsonEdit',{
+			url:'/json_edit',
+			templateUrl:'modules/core/views/jsonEdit.html'
 		});
 	}
 ]);

@@ -23,7 +23,9 @@ var fs = require('fs'),
 	consolidate = require('consolidate'),
 	path = require('path'),
 	elastic = require('elasticsearch'),
-	io = require('socket.io');
+	io = require('socket.io'),
+	multipart = require('connect-multiparty'),
+	schedule = require('node-schedule');
 
 module.exports = function(db) {
 	// Initialize express app
@@ -53,6 +55,10 @@ module.exports = function(db) {
 		res.locals.url = req.protocol + '://' + req.headers.host + req.url;
 		next();
 	});
+
+	app.use(multipart({
+		uploadDir: config.gmlPath
+	}));
 
 	// Should be placed before express.static
 	app.use(compress({
@@ -182,8 +188,16 @@ module.exports = function(db) {
 		require(path.resolve(socketPath))(app);
 	});
 
-	//var promise  = require('../app/utils/linkRotUtil');
-	//promise();
+	var doLinkRot = null;
+	var linkRotJob = schedule.scheduleJob('0 3 * * *', function(){
+
+		if(doLinkRot == null){
+			doLinkRot = require('../app/utils/linkRotUtil');
+			//Must be required after Networks Schema loaded
+		}
+		doLinkRot();
+
+	});
 
 	// Return Express server instance
 	return app;

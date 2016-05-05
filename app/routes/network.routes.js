@@ -17,6 +17,10 @@ module.exports = function(app){
     app.route('/networks/syncElastic').get(networkController.syncElastic);
     app.route('/networks/updateDate').get(networkController.addDate);
     app.route('/networks/getJSON').get(passport.authenticate('session'), requiresLogin, networkController.JSONDump);
+    app.route('/networks/updateJSON').post(passport.authenticate('session'), requiresLogin, networkController.updateJSON);
+    app.route('/networks/uploadGML').post(passport.authenticate('session'), requiresLogin, networkController.uploadGML);
+    app.route('/networks/downloadGML').put(passport.authenticate('session'), requiresLogin, networkController.downloadGML);
+    app.route('/networks/getLinkRot').get(passport.authenticate('session'), requiresLogin, networkController.getLinkRot);
 
     function requiresLogin(req, res, next){
       	if (!req.isAuthenticated()) {

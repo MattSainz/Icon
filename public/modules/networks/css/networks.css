@@ -85,6 +85,10 @@ body{
 }
 
 .networkSource{
+    margin: 0 14px 0 14px;
+}
+
+.fileUpload{
     margin: 0 14px 14px 14px;
 }
 
@@ -130,8 +134,6 @@ body{
     margin-right: 4px;
 }
 
-
-
 .contentBox{
     border-top: solid thin lightgray;
 }
@@ -162,8 +164,6 @@ md-list-item.md-1-line{
     margin: 8px 0 8px 0;
 	background: #FFFFFF;
 }
-
-
 
 .indicator{
     background: rgba(170, 170, 170, 0.89);

@@ -81,8 +81,8 @@
 
         <div ng-show="pageData.showMore" style="margin-right: 14px; margin-left: 14px; margin-top:14px;" layout="column" >
             <div layout="row" layout-align="start start" flex>
-                <label style="margin-right: 10px" class="networkCount">Networks found: {{pageData.numNetworks}}</label>
-                <label class="networkCount">Datasets found: {{pageData.numEntries}}</label>
+                <label style="margin-right: 10px" class="networkCount">Entries found: {{pageData.numNetworks}}</label>
+                <label class="networkCount">Networks found: {{pageData.numEntries}}</label>
             </div>
 
             <label class="graphLabels">Domain Counts</label>
@@ -144,7 +144,7 @@
                            EDGESIZE
                         </md-option>
                         <md-option value="_source.updateDate">
-                           UPDATE DATE
+                            Date Modified
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -168,7 +168,7 @@
                     <network-list-item authentication="authentication" network="network"></network-list-item>
                 </div>
                 <div ng-switch-when="open">
-                    <network-card network="network"></network-card>
+                    <network-card authentication="authentication" network="network"></network-card>
                 </div>
                 <div ng-switch-when="edit">
                     <edit-card  network="network" networks="pageData.networks"></edit-card>

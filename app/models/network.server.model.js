@@ -101,7 +101,12 @@ module.exports = function (app) {
             reason: String,
             brokenLinkResult: {}
         }],
-        updateDate:{ type:Date, default:Date.now }
+        updateDate:{ type:Date, default:Date.now },
+        gml:{
+            name:String,
+            path:String
+        }
+
     });
 /*
     NetworkSchema.post('save', function (doc) {

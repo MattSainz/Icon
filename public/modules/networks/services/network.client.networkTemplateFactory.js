@@ -8,10 +8,10 @@ angular.module('networks').factory('networkTemplate',[function(){
         _id:'new',
         state:'edit',
         _source:{
-            citation:'Where you found this network(s)',
+            citation:'Bibliographic entry, e.g., Lastname, Firstinitial, et al., "Title of paper." Journal Name 1(1), pageX - pageY (YYYY)',
             description:'Something about these networks ',
             hostedBy: 'Who is hosting the actual data',
-            edgeType:'Edge Tybe',
+            edgeType:'Edge Type',
             fileType: null,
             graphProperties: "New",
             graphs: [{
@@ -27,9 +27,13 @@ angular.module('networks').factory('networkTemplate',[function(){
             maxNodes: 0,
             networkDomain: "New",
             nodeType: "New",
-            sourceUrl: "URL to where more info is",
+            sourceUrl: "URL for the reference listed below",
             subDomain: "New",
-            title: "New"
+            title: "New",
+            gml:{
+                name:'',
+                path:'n/a'
+            }
         }
     }
 }]);
