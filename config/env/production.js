@@ -3,7 +3,7 @@
 module.exports = {
  	db: process.env.MONGO_DB || 'localhost:27017',
 	elastic:{
-     host: process.env.ELASTIC_DB || 'localhost:9300'
+     host: process.env.ELASTIC_DB || 'localhost:9200'
     },
 	gmlPath:'/Users/Matthias/Code/Icon/public/gml_files',
 	assets: {

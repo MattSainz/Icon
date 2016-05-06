@@ -245,20 +245,19 @@ module.exports = function (app) {
     });
 */
 
+    
     NetworkSchema.plugin(mongoosastic, {
         hydrate: true,
         esClient: elasticClient
     });
 
-
     var Networks = mongoose.model('Network', NetworkSchema);
 
-    /*
-     var stream = Networks.synchronize();
+/*
+    var stream = Networks.synchronize();
 
      var counter = 0;
      stream.on('data', function (err, doc) {
-         console.log(err);
         counter++;
      });
 
@@ -269,7 +268,6 @@ module.exports = function (app) {
      stream.on('error', function (err) {
         console.error(err);
      });
-     */
-
+*/
 };
 
