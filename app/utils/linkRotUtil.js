@@ -83,6 +83,7 @@ module.exports = function () {
     });
 
     function check(network) {
+      console.log('Network: ' + network.title);
         urlChecker.enqueue(network.sourceUrl, '', {
             type: 'sourceUrl',
             url: network.sourceUrl,

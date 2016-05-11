@@ -191,6 +191,7 @@ module.exports = function(db) {
 	var doLinkRot = null;
 	var linkRotJob = schedule.scheduleJob('0 3 * * *', function(){
 
+    console.log('Running link rot detection');
 		if(doLinkRot == null){
 			doLinkRot = require('../app/utils/linkRotUtil');
 			//Must be required after Networks Schema loaded
