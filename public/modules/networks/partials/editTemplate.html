@@ -110,7 +110,7 @@
             <div>
                 <label ng-show="network._source.gml.name">Current File: {{network._source.gml.name}}</label>
                 <md-input-container>
-                    <label>GML File (Only accepts .gml, .zip, and .tar.gz</label>
+                    <label>GML File (Only accepts .gml, .zip, and .tar.gz)</label>
                     <input disabled style="width: 650px" ng-model="file.name">
                 </md-input-container>
                 <md-button ngf-select ng-model="file" name="file" ngf-accept="'.gml,.zip,.tar.gz'" ngf-pattern="'.gml,.zip,.tar.gz'">Select</md-button>
@@ -181,9 +181,9 @@
                  </md-button>
              </div>
              <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
-                 <md-button ng-click="network._id == 'new' ? saveNew(network) : save(network, $event)" class="md-raised">Save</md-button>
-                 <md-button ng-click="cancel(network, networks)" class="md-raised">Cancel</md-button>
-                 <md-button ng-click="delete(network, networks, $event)" ng-hide="network._id == 'new'" class="md-raised md-accent">Delete</md-button>
+                 <md-button ng-click="saveWrapper(network, $event)" class="md-raised">{{saveButtonTxt}}</md-button>
+                 <md-button ng-click="cancel(network)" class="md-raised">Cancel</md-button>
+                 <md-button ng-click="deleteWrapper(network, $event)" ng-hide="network._id == 'new'" class="md-raised md-accent">Delete</md-button>
              </section>
 
         </div>

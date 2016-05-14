@@ -171,7 +171,14 @@
                     <network-card authentication="authentication" network="network"></network-card>
                 </div>
                 <div ng-switch-when="edit">
-                    <edit-card  network="network" networks="pageData.networks"></edit-card>
+                    <edit-card
+                            network="network"
+                            networks="pageData.networks"
+                            save="save(network)"
+                            delete="delete(network)"
+                            save-button-txt="{{(network._id == 'new') ? 'Save' : 'Update'}}"
+                    >
+                    </edit-card>
                 </div>
                 <div ng-switch-when="disabled">
                     <!-- Render nothing (hack for file type filtering) -->

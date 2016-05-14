@@ -11,13 +11,17 @@ angular.module('networks').controller('NetworksController', [
     'dataService',
     'searchService',
     'networkTemplate',
+    '$q',
+    '$http',
     function(
         $scope,
         Authentication,
         Menus,
         dataService,
         searchService,
-        networkTemplate
+        networkTemplate,
+        $q,
+        $http
     ) {
 
         $scope.authentication = Authentication;
@@ -67,7 +71,6 @@ angular.module('networks').controller('NetworksController', [
             id:'networksHome'
         });
 
-
         searchService.getMenuOptions(function(err, data){
             $scope.searchData.attrArr = data.attrArr;
             $scope.searchData.sizeInfo = data.sizeInfo;
@@ -101,6 +104,14 @@ angular.module('networks').controller('NetworksController', [
 
         $scope.addNewNetworkTemplate = function(){
             $scope.pageData.networks.unshift(networkTemplate);
+        };
+
+        $scope.save = function(updatedDoc){
+            return $http.put('/networks/saveNetwork', updatedDoc._source);
+        };
+
+        $scope.delete = function(doomedDoc){
+            return $http.put('/networks/deleteNetwork', {id: doomedDoc._id});
         };
 
         $scope.showSearchInfo = function(ev){

@@ -44,5 +44,14 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
             false
         );
 
+        Menus.addMenuItem(
+            'topbar',
+            'Suggestions',
+            '#!/suggestions',
+            'item',
+            '#!/suggestions',
+            true
+        );
+
 	}
 ]);

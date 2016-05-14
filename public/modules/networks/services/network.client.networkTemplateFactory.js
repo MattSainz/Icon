@@ -33,7 +33,8 @@ angular.module('networks').factory('networkTemplate',[function(){
             gml:{
                 name:'',
                 path:'n/a'
-            }
+            },
+            updateDate: Date.now()
         }
     }
 }]);

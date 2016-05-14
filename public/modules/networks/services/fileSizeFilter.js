@@ -27,7 +27,7 @@ angular.module('networks').filter('fileSize', function () {
 
         for (var i in sizes) {
             if (parseNum / 1000 < 1) {
-                return parseNum.toString() + sizes[i];
+                return parseFloat(parseNum.toString()).toFixed(2) + sizes[i];
             }
             parseNum /= 1000;
         }
