@@ -29,31 +29,19 @@ var uniqueAttrs = [
 function save(notTmp, req, res){
     var model = (notTmp) ? Networks : TmpNetworks;
 
-
-    var requiredData = ['_id','title', 'networkDomain', 'subDomain', 'description', 'hostedBy',
-       'nodeType', 'edgeType', 'graphProperties', 'sourceUrl', 'citation', 'maxNodes',
-       'maxEdges', 'graphs'
-    ];
-
-    for(var i in requiredData){
-       if( req.body[requiredData[i]] == undefined ) {
-           return res.status(400).send('Document does not have all required properties');
-       }
-    }
-
     //Must save for sync to elasticsearch
     if(req.body._id == 'new'){
       delete req.body._id;
       new model(req.body).save(function(err, ret){
           if (err) return res.status(400).send({ error: err });
-          return res.status(200).send({message:'Save successful'});
+          return res.status(200).send({message:'Save successful', id:ret._id});
       });
     } else {
         model.findOne({'_id':req.body._id}, function(err, doc){
             _.assign(doc, req.body);
             doc.save(function(err, ret){
                 if (err) return res.status(400).send({ error: err });
-                return res.status(200).send({message:'Save successful'});
+                return res.status(200).send({message:'Save successful', id:ret._id});
             });
         });
     }
@@ -86,6 +74,7 @@ function deleteN (isNormal, req, res) {
 
     var model = (isNormal) ? Networks : TmpNetworks;
 
+    console.log(req.body);
     model.findById(req.body.id, function (err, doc) {
         if (err) {
             return res.status(400).send(err);

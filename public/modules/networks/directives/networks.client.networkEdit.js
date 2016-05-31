@@ -59,10 +59,12 @@ angular.module('networks').directive('editCard', [function () {
 
                     function _saveWrapper(updatedDoc) {
                         $scope.save(updatedDoc).then(function (ret) {
+                            console.log(ret);
                             showPopup({
                                 title: 'Save Successful!',
                                 content: 'Document Saved Successfully'
                             }, ev);
+                            updatedDoc._id = ret.data.id;
                             updatedDoc.state = 'list';
                         }, function (err) {
                             console.log(err);

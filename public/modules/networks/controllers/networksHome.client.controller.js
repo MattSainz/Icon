@@ -107,6 +107,7 @@ angular.module('networks').controller('NetworksController', [
         };
 
         $scope.save = function(updatedDoc){
+            updatedDoc._source['_id'] = updatedDoc._id;
             return $http.put('/networks/saveNetwork', updatedDoc._source);
         };
 
