@@ -30,7 +30,7 @@ angular.module('networks').directive('editCard', [function () {
                     graphArr.push({
                         name: 'New Name',
                         edges: 'Edge Count',
-                        nodes: 'Edge Count',
+                        nodes: 'Node Count',
                         fileSize: 'File Size',
                         fileType: 'File Type',
                         downloadLink: 'http://'

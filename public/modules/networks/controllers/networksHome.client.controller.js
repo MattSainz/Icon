@@ -76,7 +76,7 @@ angular.module('networks').controller('NetworksController', [
             $scope.searchData.sizeInfo = data.sizeInfo;
             $scope.graphData.sizeDistMenu = {
                 data : [data.sizeInfo[0].attrs.data, data.sizeInfo[3].attrs.data],
-                labels : data.sizeInfo[0].attrs.labels
+                labels : data.sizeInfo[0].attrs.labels,
             };
         });
 

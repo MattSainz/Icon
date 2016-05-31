@@ -146,7 +146,8 @@ angular.module('networks').service('dataService', ['socket', '$window', 'fileSCo
 
        data.sizeDist = {
             data: [sizeDistNodes.data, sizeDistEdges.data],
-            labels: sizeDistNodes.labels
+            labels: sizeDistNodes.labels,
+            series: ['Nodes', 'Edges']
        };
 
     }

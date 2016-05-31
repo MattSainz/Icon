@@ -18,7 +18,7 @@ module.exports = {
                 'public/lib/angular-aria/angular-aria.min.css',
 				'public/lib/textAngular/dist/textAngular.css',
 				'public/lib/font-awesome/font-awesome.min.css',
-				'public/lib/angular-chart.js/dist/angular-chart/css'
+				'public/lib/angular-chart.js/dist/angular-chart.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',

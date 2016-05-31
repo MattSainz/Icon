@@ -121,20 +121,20 @@
              <table width="100%" layout="row" layout-align="space-between center">
                 <tr  class="networkRow">
                     <td width="45%"> Name </td>
-                    <td width="10%"> Edges </td>
                     <td width="10%"> Nodes </td>
+                    <td width="10%"> Edges </td>
                     <td width="10%"> File Size</td>
                     <td width="10%"> File Type </td>
                     <td width="10%"> Format </td>
                     <td width="25">  Source</td>
                     </tr>
                 <tr class="networkRow" ng-repeat="graph in network._source.graphs">
-                    <td width="45%"> {{graph.name}} </td>
-                    <td width="10%">{{graph.edges}} </td>
-                    <td width="10%">{{graph.nodes}} </td>
-                    <td width="10%">{{graph.fileSize | fileSize }} </td>
-                    <td width="10%">{{graph.fileType}} </td>
-                    <td width="10%"> {{graph.fileFormat}} </td>
+                    <td width="45%">{{graph.name}}</td>
+                    <td width="10%">{{graph.nodes}}</td>
+                    <td width="10%">{{graph.edges}}</td>
+                    <td width="10%">{{graph.fileSize | fileSize }}</td>
+                    <td width="10%">{{graph.fileType}}</td>
+                    <td width="10%">{{graph.fileFormat}}</td>
                     <td width="25"> <a href="{{graph.downloadLink}}">Link</a> </td>
                 </tr>
              </table>
