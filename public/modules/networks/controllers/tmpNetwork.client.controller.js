@@ -11,11 +11,20 @@ angular.module('networks').controller('TmpNetworkController', [
     '$http',
     'networkTemplate',
     '$q',
-    function ($scope, $mdToast, $window, Authentication, $http, networkTemplate, $q) {
+    'TextContent',
+    function ($scope, $mdToast, $window, Authentication, $http, networkTemplate, $q, TextContent) {
 
     $scope.networks = [];
 
     $scope.authentication = Authentication;
+
+    var suggestionPage = new TextContent($scope, 'suggestion');
+
+    $scope.textSave   = suggestionPage.save;
+    $scope.textUpdate = suggestionPage.update;
+    $scope.textDelete = suggestionPage.delete;
+    $scope.textCancel = suggestionPage.cancel;
+    $scope.getContentTemplate = suggestionPage.getContentTemplate;
 
     $http.get('/networks/getTmpNetworks').then(function (ret) {
         //Map to format used for results returned from elastic
@@ -36,7 +45,11 @@ angular.module('networks').controller('TmpNetworkController', [
     });
 
     $scope.addNewNetworkTemplate = function () {
-        $scope.networks.unshift(networkTemplate);
+        var suggestTemplate =  new networkTemplate;
+        suggestTemplate._source.suggestedBy = 'Your Name Here (optional)';
+        suggestTemplate._source.suggestedByUrl = 'Your Personal Site (optional)';
+        suggestTemplate._source.email = 'Email for Icon staff to contact you (Not made public)';
+        $scope.networks.unshift(suggestTemplate);
     };
 
     $scope.save = function(newDoc){
@@ -56,7 +69,15 @@ angular.module('networks').controller('TmpNetworkController', [
        }
     };
 
-    $scope.delete = function(doomed){
-        return $http.put('/networks/deleteTmpNetwork')
+    $scope.update = function(oldDoc){
+       console.log(oldDoc);
+       oldDoc._source['_id'] = oldDoc._id;
+       return $http.put('networks/saveTmpNetwork', oldDoc._source);
     };
+
+    $scope.delete = function(doomed){
+        return $http.put('/networks/deleteTmpNetwork', {id:doomed._id});
+    };
+
+    $scope.isSuggestion = true;
 }]);

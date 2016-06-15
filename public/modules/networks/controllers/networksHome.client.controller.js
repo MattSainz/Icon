@@ -103,7 +103,7 @@ angular.module('networks').controller('NetworksController', [
         };
 
         $scope.addNewNetworkTemplate = function(){
-            $scope.pageData.networks.unshift(networkTemplate);
+            $scope.pageData.networks.unshift(new networkTemplate);
         };
 
         $scope.save = function(updatedDoc){

@@ -101,12 +101,14 @@ module.exports = function (app) {
             reason: String,
             brokenLinkResult: {}
         }],
-        updateDate:{ type:Date, default:Date.now },
+        updateDate:{ type:Date },
         gml:{
             name:String,
             path:String
-        }
-
+        },
+        suggestedBy:String,
+        suggestedByUrl: String,
+        email: String
     });
 /*
     NetworkSchema.post('save', function (doc) {

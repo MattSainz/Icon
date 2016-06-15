@@ -29,10 +29,16 @@ var uniqueAttrs = [
 function save(notTmp, req, res){
     var model = (notTmp) ? Networks : TmpNetworks;
 
+    if(notTmp && req.body.email) delete req.body.email;
+        //Don't save contributor's email in the public db
+
     //Must save for sync to elasticsearch
     if(req.body._id == 'new'){
       delete req.body._id;
+      console.log(req.body);
+      console.log('=========');
       new model(req.body).save(function(err, ret){
+          console.log(ret);
           if (err) return res.status(400).send({ error: err });
           return res.status(200).send({message:'Save successful', id:ret._id});
       });
@@ -64,7 +70,13 @@ exports.getTmpNetworks = function(req, res){
           })
       } else {
           res.status(200).send({
-              message: ret
+              message: (req.user) ? ret : _.map(ret, function(n){
+                 console.log(n);
+                 if( n.email ){
+                    delete n.email;
+                 }
+                 return n;
+              })
           });
       }
   })

@@ -4,7 +4,7 @@
   "description": "Collection of networks",
   "dependencies": {
     "angular": "1.4.7",
-    "angular-material": "1.0.7",
+    "angular-material": "1.0.9",
     "angular-resource": "1.4.7",
     "angular-mocks": "1.4.7",
     "angular-cookies": "1.4.7",

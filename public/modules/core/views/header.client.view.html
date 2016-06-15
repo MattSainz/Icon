@@ -1,13 +1,15 @@
 <div ng-controller="HeaderController">
     <md-content id="myToolbar">
         <md-toolbar layout="row" layout-align="space-around center">
-            <h2 class="md-toolbar-tools md-raised">
+            <h2 class="md-toolbar-tools md-raised" flex>
                 <a href="#!/">Index of Complex Networks</a>
             </h2>
 
             <div data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ui-route="{{item.uiRoute}}">
                 <md-button ng-style="{'color':'white'}" href="{{item.uiRoute}}">{{item.title}}</md-button>
             </div>
+
+            <!-- Done separately so signin would not show up when logged in -->
             <md-button ng-style="{'color':'white'}" data-ng-hide="authentication.user" href="#!/signin" ng-class="{active: $uiRoute}">SIGN IN</md-button>
             <md-button ng-style="{'color':'white'} "data-ng-hide="!authentication.user" href="#!/signup" ng-class="{active: $uiRoute}">Add User</md-button>
             <md-button ng-style="{'color':'white'} "data-ng-hide="!authentication.user" href="/auth/signout">LOG OUT</md-button>

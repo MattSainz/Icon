@@ -28,6 +28,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
             },
             id:'home'
         });
+
         searchService.doSearch();
 
 		$scope.authentication = Authentication;

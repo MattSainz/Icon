@@ -7,7 +7,7 @@
             </md-input-container>
         </div>
 
-        <div layout="row" flex="auto" layout-align="end center" >
+        <div layout="row" flex="auto" layout-align="end center">
             <div class="domain">
                 <md-input-container class="md-block">
                     <label>Domain</label>
@@ -25,64 +25,58 @@
 
 
     </div>
-    <div class="networkInfo" layout="row" flex="grow">
+    <div class="networkInfo" layout="row">
 
-        <div class="networkInfoLeft" flex="60">
+        <div class="networkInfoLeft" flex>
             <md-input-container class="md-block">
                 <label>Description</label>
                 <textarea ng-model="network._source.description" rows="12" style="height:auto;"></textarea>
             </md-input-container>
         </div>
 
-        <div class="networkInfoRight" layout="column" flex="auto">
+        <div class="networkInfoRight" layout="column" flex>
             <div>
                 <!-- <div class="nodeEdgeContent contentBox contentBox-{{network._source.networkDomain}}"> -->
-                    <div layout="row" layout-align="space-between center">
-                        <div>
-                            <md-input-container class="md-block" style="width:auto;" >
-                                 <label>Edge Type</label>
+                <div layout="row" layout-align="space-between center">
+                    <div layout="column" flex>
+                        <div >
+                            <md-input-container class="md-block" style="width:auto;">
+                                <label>Edge Type</label>
                                 <input ng-model="network._source.edgeType">
                             </md-input-container>
                         </div>
-                    </div>
 
-                    <div layout="row" layout-align="space-between center">
-                        <div>
-                            <md-input-container class="md-block" grow>
-                                 <label>Node Type</label>
-                                 <input ng-model="network._source.nodeType">
+                        <div >
+                            <md-input-container class="md-block">
+                                <label>Node Type</label>
+                                <input ng-model="network._source.nodeType">
                             </md-input-container>
                         </div>
 
-                    </div>
-
-                    <div layout="row" layout-align="space-between center">
+                        <div >
+                            <md-input-container class="md-block">
+                                <label>Calculated</label>
+                                <input disabled>
+                            </md-input-container>
+                        </div>
 
                         <div>
-                            <md-input-container class="md-block" grow>
-                                 <label>Calculated</label>
-                                 <input disabled>
+                            <md-input-container class="md-block">
+                                <label>Calculated</label>
+                                <input disabled>
                             </md-input-container>
                         </div>
                     </div>
-
-                    <div layout="row" style="margin-bottom:26px;" layout-align="space-between center">
-                        <div>
-                             <md-input-container class="md-block" grow>
-                                 <label>Calculated</label>
-                                 <input disabled>
-                             </md-input-container>
-                        </div>
-                    </div>
+                </div>
                 <!-- </div> -->
 
                 <div>
-                   <!-- <div class="graphPropertiesContent contentBox contentBox-{{network._source.domain}}"> -->
-                        <md-input-container class="md-block">
-                             <label>Graph Properties</label>
-                             <input ng-model="network._source.graphProperties">
-                        </md-input-container>
-                   <!-- </div> -->
+                    <!-- <div class="graphPropertiesContent contentBox contentBox-{{network._source.domain}}"> -->
+                    <md-input-container class="md-block">
+                        <label>Graph Properties</label>
+                        <input ng-model="network._source.graphProperties">
+                    </md-input-container>
+                    <!-- </div> -->
                 </div>
 
             </div>
@@ -91,52 +85,78 @@
 
     </div>
 
-    <div class="networkSource" layout="column" flex="grow">
+    <div class="networkSource" layout="column" flex>
         <div>
             <md-input-container class="md-block">
-                 <label>Source Url</label>
-                 <input ng-model="network._source.sourceUrl">
+                <label>Source Url</label>
+                <input ng-model="network._source.sourceUrl">
             </md-input-container>
 
             <md-input-container class="md-block">
-                 <label>Citation</label>
-                 <input ng-model="network._source.citation">
+                <label>Citation</label>
+                <input ng-model="network._source.citation">
             </md-input-container>
 
             <md-input-container class="md-block">
-                 <label>Hosted By</label>
-                 <input ng-model="network._source.hostedBy">
+                <label>Hosted By</label>
+                <input ng-model="network._source.hostedBy">
             </md-input-container>
+
+            <div ng-show="suggestion" layout="row" layout-align="start start" flex>
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Suggested By</label>
+                        <input ng-model="network._source.suggestedBy">
+                    </md-input-container>
+                </div>
+                <div flex>
+                    <md-input-container class="md-block">
+                        <label>Suggested By URL</label>
+                        <input ng-model="network._source.suggestedByUrl">
+                    </md-input-container>
+                </div>
+            </div>
+
+            <div ng-show="suggestion" flex>
+                <md-input-container class="md-block">
+                    <label>Suggested By Email</label>
+                    <input ng-model="network._source.email">
+                </md-input-container>
+            </div>
+
             <div>
                 <label ng-show="network._source.gml.name">Current File: {{network._source.gml.name}}</label>
                 <md-input-container>
                     <label>GML File (Only accepts .gml, .zip, and .tar.gz)</label>
                     <input disabled style="width: 650px" ng-model="file.name">
                 </md-input-container>
-                <md-button ngf-select ng-model="file" name="file" ngf-accept="'.gml,.zip,.tar.gz'" ngf-pattern="'.gml,.zip,.tar.gz'">Select</md-button>
+                <md-button ngf-select ng-model="file" name="file" ngf-accept="'.gml,.zip,.tar.gz'"
+                           ngf-pattern="'.gml,.zip,.tar.gz'">Select
+                </md-button>
             </div>
         </div>
     </div>
 
     <div class="individualNetworks" layout="column">
-         <label class="contentLabel">Individual Graphs and Info</label>
-         <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}" >
-             <table width="100%" layout="row" layout-align="center">
-                <tr  class="networkRow">
-                    <td width="10%"> </td>
-                    <td width="35%"> Name </td>
-                    <td width="10%"> Nodes </td>
-                    <td width="10%"> Edges </td>
+        <label class="contentLabel">Individual Graphs and Info</label>
+        <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}">
+            <table width="100%" layout="row" layout-align="center">
+                <tr class="networkRow">
+                    <td width="10%"></td>
+                    <td width="35%"> Name</td>
+                    <td width="10%"> Nodes</td>
+                    <td width="10%"> Edges</td>
                     <td width="10%"> File Size</td>
-                    <td width="10%"> File Type </td>
+                    <td width="10%"> File Type</td>
                     <td width="10%"> File Format</td>
-                    <td width="25">  Download </td>
-                    </tr>
+                    <td width="25"> Download</td>
+                </tr>
                 <tr class="networkRow" ng-repeat="graph in network._source.graphs">
                     <td width="10%">
-                       <md-button class="md-fab md-mini removeGraphButton" aria-label="Add Graph" ng-click="remove($index, network._source.graphs)">
-                          <md-icon md-svg-src="modules/core/img/icons/minus.svg"></md-icon>
-                       </md-button>
+                        <md-button class="md-fab md-mini removeGraphButton" aria-label="Add Graph"
+                                   ng-click="remove($index, network._source.graphs)">
+                            <md-icon md-svg-src="modules/core/img/icons/minus.svg"></md-icon>
+                        </md-button>
                     </td>
                     <td width="35%">
                         <md-input-container class="md-block">
@@ -174,17 +194,23 @@
                         </md-input-container>
                     </td>
                 </tr>
-             </table>
-             <div style="position:relative;left:50%;">
-                 <md-button class="md-fab md-mini md-warn" aria-label="Add Graph" ng-click="add(network._source.graphs)">
-                     <md-icon md-svg-src="modules/core/img/icons/ic_add_48px.svg"></md-icon>
-                 </md-button>
-             </div>
-             <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
-                 <md-button ng-click="saveWrapper(network, $event)" class="md-raised">{{saveButtonTxt}}</md-button>
-                 <md-button ng-click="cancel(network)" class="md-raised">Cancel</md-button>
-                 <md-button ng-click="deleteWrapper(network, $event)" ng-hide="network._id == 'new'" class="md-raised md-accent">Delete</md-button>
-             </section>
+            </table>
+            <div style="position:relative;left:50%;">
+                <md-button class="md-fab md-mini md-warn" aria-label="Add Graph" ng-click="add(network._source.graphs)">
+                    <md-icon md-svg-src="modules/core/img/icons/ic_add_48px.svg"></md-icon>
+                </md-button>
+            </div>
+
+            <section layout="row" layout-sm="column" layout-align="start center" layout-wrap>
+                <md-button ng-click="saveWrapper(network, $event)" class="md-raised">{{saveButtonTxt}}</md-button>
+                <div ng-show="suggestion && authentication.user">
+                    <md-button ng-click="updateWrapper(network, $event)" class="md-raised">Update</md-button>
+                </div>
+                <md-button ng-click="cancel(network)" class="md-raised">Cancel</md-button>
+                <md-button ng-click="deleteWrapper(network, $event)" ng-hide="network._id == 'new'"
+                           class="md-raised md-accent">Delete
+                </md-button>
+            </section>
 
         </div>
     </div>

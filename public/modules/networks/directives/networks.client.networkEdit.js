@@ -6,7 +6,10 @@ angular.module('networks').directive('editCard', [function () {
         scope: {
             network: '=',
             networks: '=',
+            suggestion: '=',
+            authentication:'=',
             saveButtonTxt: '@',
+            update:'&',
             save: '&',
             delete: '&'
         },
@@ -59,7 +62,6 @@ angular.module('networks').directive('editCard', [function () {
 
                     function _saveWrapper(updatedDoc) {
                         $scope.save(updatedDoc).then(function (ret) {
-                            console.log(ret);
                             showPopup({
                                 title: 'Save Successful!',
                                 content: 'Document Saved Successfully'
@@ -67,7 +69,6 @@ angular.module('networks').directive('editCard', [function () {
                             updatedDoc._id = ret.data.id;
                             updatedDoc.state = 'list';
                         }, function (err) {
-                            console.log(err);
                             showPopup({
                                 title: 'Save Error',
                                 content: 'There was an issue saving your document'
@@ -85,6 +86,25 @@ angular.module('networks').directive('editCard', [function () {
                         _saveWrapper(updatedDoc);
                     }
 
+                };
+
+                $scope.updateWrapper = function(updatedDoc, ev){
+                   if($scope.suggestion) {
+                       $scope.update(updatedDoc).then(function (ret) {
+                           showPopup({
+                               title: 'Update Successful',
+                               content: 'Document Update Successful'
+                           }, ev);
+                           updatedDoc.state = 'list';
+                       }, function (ret) {
+                           showPopup({
+                               title: 'Update Error',
+                               content: 'There was an error deleting your document'
+                           }, ev);
+                       });
+                   } else {
+                       console.error("Separate updates for admins for suggestion not working");
+                   }
                 };
 
                 $scope.deleteWrapper = function (doomed, ev) {

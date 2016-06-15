@@ -53,27 +53,27 @@ angular.module('networks').service('searchService',[
             }
 
             var elasticQuery = {
-               'filtered':{'query': queryObj, 'filter':{'and':[]}}
+                'filtered':{'query': queryObj, 'filter':{'and':[]}}
             };
 
             toRet = elasticQuery;
 
             var textOnlyQuery = {
-               'filtered':{
-                   'query':{'query_string':{'query': updatedData.searchField}}
-               }
+                'filtered':{
+                    'query':{'query_string':{'query': updatedData.searchField}}
+                }
             };
 
             _.each(updatedData.sizeInfo, function(e){
-               if(e.attrs.state != ''){
-                   var tmpOpj = {};
-                   var tmpObj2 = {};
-                   tmpObj2[e.attrs.comparison] = e.attrs.state;
-                   tmpOpj[e.attrCat] = tmpObj2;
-                   elasticQuery.filtered.filter.and.push({
+                if(e.attrs.state != ''){
+                    var tmpOpj = {};
+                    var tmpObj2 = {};
+                    tmpObj2[e.attrs.comparison] = e.attrs.state;
+                    tmpOpj[e.attrCat] = tmpObj2;
+                    elasticQuery.filtered.filter.and.push({
                         "range": tmpOpj
-                   });
-               }
+                    });
+                }
             });
 
             _.each(updatedData.attrArr, function(o){
@@ -83,7 +83,7 @@ angular.module('networks').service('searchService',[
                     if (c.state == true) {
                         tmpObj = {};
                         if(c.value.split(' ').length)
-                        tmpObj[checkboxCategory] = c.value.toLowerCase().split(' ');
+                            tmpObj[checkboxCategory] = c.value.toLowerCase().split(' ');
                         tmpObj['execution'] = 'and';
                         checkBoxOr.or.filters.push({
                             'terms': tmpObj

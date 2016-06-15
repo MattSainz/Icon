@@ -40,6 +40,7 @@ module.exports = function(db) {
 	app.locals.cssFiles = config.getCSSAssets();
 
 	//set up elasticsearch client
+	console.log('Elastic host: ' + config.elastic.host);
 	app.set('elastic' ,new elastic.Client({
         host: config.elastic.host,
         log: 'error'

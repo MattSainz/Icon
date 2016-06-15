@@ -105,7 +105,10 @@ module.exports = function (app) {
         gml: {
             name: String,
             path: String
-        }
+        },
+        suggestedBy:String,
+        suggestedByUrl: String,
+        email: String
 
     });
 

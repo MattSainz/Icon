@@ -1,32 +1,68 @@
 <section ng-controller="TmpNetworkController">
+    <div ng-repeat="entry in entries | orderBy: 'dateCreated'">
+        <div class="animate-switch-container">
+            <div class="animate-switch" ng-if="entry.edit == true">
+                <div ng-if="entry._id != -1">
+                    <div new-content entry="entry" cancel-function="textCancel($index)" save-function="textUpdate($index)"
+                         delete-function="textDelete($index)"></div>
+                </div>
+                <div ng-if="entry._id == -1">
+                    <div new-content entry="entry" cancel-function="textCancel($index)" save-function="textSave($index)"
+                         delete-function="textDelete($index)"></div>
+                </div>
+            </div>
+            <div class="animate-switch" ng-if="entry.edit == false">
+                <md-card class="homeCard">
+                    <md-card-content>
+                        <h2 class="md-title">{{entry.title}}</h2>
+                        <div ng-bind-html="entry.contentBody"></div>
+                        <section data-ng-hide="!authentication.user" layout="row" layout-sm="column"
+                                 layout-align="end center" layout-wrap>
+                            <md-button data-ng-hide="!authentication.user" ng-click="entry.edit = true">Edit</md-button>
+                        </section>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+
+    <md-button data-ng-hide="!authentication.user" class="md-raised" aria-label="Comment"
+               ng-click="getContentTemplate()">
+        Add Text
+    </md-button>
+
     <md-content>
-        <md-button id="addNetwork" ng-show="!authentication.user" class="md-fab md-warn" aria-label="Comment" ng-click="addNewNetworkTemplate()">
-             <md-icon md-font-icon="material-icons"> add </md-icon>
+        <md-button id="addNetwork" ng-show="!authentication.user" class="md-fab md-warn" aria-label="Comment"
+                   ng-click="addNewNetworkTemplate()">
+            <md-icon md-font-icon="material-icons"> add</md-icon>
         </md-button>
     </md-content>
 
     <div class="dataList">
-    <md-list>
-        <div ng-repeat="network in networks">
-            <div ng-switch on="network.state">
-                <div ng-switch-when="list">
-                    <network-list-item authentication="authentication" network="network"></network-list-item>
-                </div>
-                <div ng-switch-when="open">
-                    <network-card authentication="authentication" network="network"></network-card>
-                </div>
-                <div ng-switch-when="edit">
-                    <edit-card
-                            network="network"
-                            networks="networks"
-                            save="save(network)"
-                            delete="delete(network)"
-                            save-button-txt="{{(authentication.user) ? 'Make Public' : 'Save'}}"
-                    >
-                    </edit-card>
+        <md-list>
+            <div ng-repeat="network in networks">
+                <div ng-switch on="network.state">
+                    <div ng-switch-when="list">
+                        <network-list-item authentication="authentication" network="network"></network-list-item>
+                    </div>
+                    <div ng-switch-when="open">
+                        <network-card authentication="authentication" network="network"></network-card>
+                    </div>
+                    <div ng-switch-when="edit">
+                        <edit-card
+                                network="network"
+                                networks="networks"
+                                save="save(network)"
+                                authentication="authentication"
+                                suggestion="isSuggestion"
+                                update="update(network)"
+                                delete="delete(network)"
+                                save-button-txt="{{(authentication.user) ? 'Make Public' : 'Save'}}"
+                        >
+                        </edit-card>
+                    </div>
                 </div>
             </div>
-        </div>
-    </md-list>
+        </md-list>
     </div>
 </section>

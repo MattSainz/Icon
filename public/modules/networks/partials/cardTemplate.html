@@ -1,10 +1,10 @@
 <md-card class="networkCard">
     <div class="networkTitleCard" layout="row" layout-align="space-between center">
         <div flex="auto">
-           {{network._source.title}}
+            {{network._source.title}}
         </div>
 
-        <div layout="row" flex="auto" layout-align="end center" >
+        <div layout="row" flex="auto" layout-align="end center">
             <div class="domain" style="margin-right: 8px">
                 {{network._source.networkDomain}}
             </div>
@@ -16,7 +16,8 @@
         </div>
 
         <md-button class="md-icon-button" ng-click="network.state = 'list'" aria-label="More">
-            <md-icon class="md-warn" ng-style="{'height':'22px'}" md-svg-icon="modules/core/img/icons/chevron-up.svg"></md-icon>
+            <md-icon class="md-warn" ng-style="{'height':'22px'}"
+                     md-svg-icon="modules/core/img/icons/chevron-up.svg"></md-icon>
         </md-button>
 
     </div>
@@ -24,14 +25,14 @@
 
         <div class="networkInfoLeft" flex>
             <label class="contentLabel">Description</label>
-            <div class="descriptionContent contentBox contentBox-{{network._source.networkDomain}}" >
+            <div class="descriptionContent contentBox contentBox-{{network._source.networkDomain}}">
                 {{network._source.description}}
             </div>
         </div>
 
         <div class="networkInfoRight" layout="column" flex>
             <div>
-                <label class="contentLabel">Network Summary</label>
+                <label class="contentLabel">Network summary</label>
                 <div class="nodeEdgeContent contentBox contentBox-{{network._source.networkDomain}}">
                     <div layout="row" layout-align="space-between center">
                         <div>
@@ -65,7 +66,7 @@
 
                     <div layout="row" layout-align="space-between center">
                         <div>
-                           Avg Nodes
+                            Avg Nodes
                         </div>
                         <div>
                             {{network.avgNodes | number : 2}}
@@ -74,7 +75,7 @@
                 </div>
 
                 <div>
-                    <label class="contentLabel">Graph Properties</label>
+                    <label class="contentLabel">Graph properties</label>
                     <div class="graphPropertiesContent contentBox contentBox-{{network._source.networkDomain}}">
                         {{network._source.graphProperties}}
                     </div>
@@ -89,7 +90,8 @@
     <div class="networkSource" layout="row">
         <div flex>
             <label class="contentLabel">Citation</label>
-            <div layout="row" layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
+            <div layout="row" layout-align="space-between top"
+                 class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
                 <div>
                     {{network._source.citation}}
                     <a href="{{network._source.sourceUrl}}">Link</a>
@@ -98,36 +100,57 @@
         </div>
     </div>
 
-    <div class="networkSource" layout="row">
-        <div style="width: 100%">
-            <label class="contentLabel">Hosted By</label>
-            <div layout="row"  layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
-                <div>
-                    {{(network._source.hostedBy) ? network._source.hostedBy : 'Not provided'}}
+    <div class="networkSource" layout="column">
+        <div layout="row" layout-align="space-between start" flex>
+
+            <div flex>
+                <label class="contentLabel">Hosted by</label>
+                <div class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
+                    <div>
+                        {{(network._source.hostedBy) ? network._source.hostedBy : 'Not provided'}}
+                    </div>
                 </div>
             </div>
-            <div ng-show="authentication.user && network._source.gml.path" >
-                <label class="contentLabel">GML Download</label>
-                <div layout="row"  layout-align="space-between top" class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
-                    <md-button ng-click="download(network._source.gml.path)">Download</md-button>
+
+            <div ng-show="network._source.suggestedBy" flex>
+                <label class="contentLabel">Suggested by</label>
+                <div class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
+                    <div ng-if="network._source.suggestedByUrl">
+                        <a href="{{network._source.suggestedByUrl}}">{{network._source.suggestedBy}}</a>
+                    </div>
+                    <div ng-if="!network._source.suggestedByUrl">
+                        {{network._source.suggestedBy}}
+                    </div>
                 </div>
+            </div>
+
+
+        </div>
+
+        <div ng-show="authentication.user && network._source.gml.path" flex>
+            <label class="contentLabel">GML Download</label>
+            <div layout="row" layout-align="space-between top"
+                 class="sourcePropterties contentBox contentBox-{{network._source.networkDomain}}">
+                <md-button ng-click="download(network._source.gml.path)">Download</md-button>
             </div>
         </div>
+
+
     </div>
 
     <div class="individualNetworks" layout="column">
-         <label class="contentLabel">Network Data Set</label>
-         <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}" >
-             <table width="100%" layout="row" layout-align="space-between center">
-                <tr  class="networkRow">
-                    <td width="45%"> Name </td>
-                    <td width="10%"> Nodes </td>
-                    <td width="10%"> Edges </td>
+        <label class="contentLabel">Network data</label>
+        <div class="networksContent contentBox contentBox-{{network._source.networkDomain}}">
+            <table width="100%" layout="row" layout-align="space-between center">
+                <tr class="networkRow">
+                    <td width="45%"> Name</td>
+                    <td width="10%"> Nodes</td>
+                    <td width="10%"> Edges</td>
                     <td width="10%"> File Size</td>
-                    <td width="10%"> File Type </td>
-                    <td width="10%"> Format </td>
-                    <td width="25">  Source</td>
-                    </tr>
+                    <td width="10%"> File Type</td>
+                    <td width="10%"> Format</td>
+                    <td width="25"> Source</td>
+                </tr>
                 <tr class="networkRow" ng-repeat="graph in network._source.graphs">
                     <td width="45%">{{graph.name}}</td>
                     <td width="10%">{{graph.nodes}}</td>
@@ -135,9 +158,9 @@
                     <td width="10%">{{graph.fileSize | fileSize }}</td>
                     <td width="10%">{{graph.fileType}}</td>
                     <td width="10%">{{graph.fileFormat}}</td>
-                    <td width="25"> <a href="{{graph.downloadLink}}">Link</a> </td>
+                    <td width="25"><a href="{{graph.downloadLink}}">Link</a></td>
                 </tr>
-             </table>
+            </table>
         </div>
     </div>
 </md-card>
